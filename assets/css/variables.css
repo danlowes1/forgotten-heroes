@@ -1,0 +1,23 @@
+/* Variables in separate file cos was told it was good practice */
+:root {
+
+  --primary-color: #2c3e50;
+  --secondary-color: #e74c3c;
+  --accent-color: #f39c12;
+  --light-color: #ecf0f1;
+  --dark-color: #2c3e50;
+  --text-color: #333;
+  --text-light: #fff;
+
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  --font-main: 'Arial', sans-serif;
+  --font-heading: 'Georgia', serif;
+
+
+  --border-radius: 4px;
+  --border: 1px solid #ddd;
+}
