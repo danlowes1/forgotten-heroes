@@ -146,20 +146,23 @@ img {
 }     */
 .quote {
     font-style: italic;
-    margin: 20px 0;
-    padding: 10px 20px;
-    background-color:   rgba(243, 156, 18, 0.1);
+    padding: 15px 20px 15px 40px; /* More left padding for the quote mark */
+    background-color: rgba(243, 156, 18, 0.1);
     border-left: 5px solid var(--accent-color);
+    margin: var(--space-lg) 0;
     position: relative;
 }
+
 .quote::before {
     content: "“";
-    font-size: 2rem;
-    color: #383838;
+    font-size: 4rem; /* Larger size for emphasis */
+    color: rgba(56, 56, 56, 0.2); /* Lighter and more subtle */
     position: absolute;
-    top: -10px;
-    left: -20px;
+    top: 10px; /* Lower than before */
+    left: 5px; /* Inside the container but to the far left */
+    line-height: 1; /* Prevents extra space below the quote mark */
 }
+
 
 .heroes-container {
   display: flex;
