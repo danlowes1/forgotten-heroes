@@ -155,7 +155,7 @@ img {
 .quote::before {
     content: "“";
     font-size: 2rem;
-    color: #ccc;
+    color: #383838;
     position: absolute;
     top: -10px;
     left: -20px;
