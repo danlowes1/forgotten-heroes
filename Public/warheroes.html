@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgotten War Heroes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #2c3e50, #4a6572);
+            color: #f5f5f5;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        header {
+            background: linear-gradient(to right, #8e0e00, #1f1c18);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #d4af37;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #f5f5f5;
+            margin-bottom: 15px;
+        }
+        
+        .heroes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+        
+        .hero-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-image {
+            height: 200px;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .hero-flag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 60px;
+            height: 40px;
+            background-size: cover;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            padding: 20px;
+        }
+        
+        .hero-name {
+            font-size: 1.6rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #8e0e00;
+            padding-bottom: 5px;
+        }
+        
+        .hero-meta {
+            color: #bbb;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .hero-desc {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        .hero-link {
+            display: inline-block;
+            background: #8e0e00;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .hero-link:hover {
+            background: #ac1302;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 3px solid #d4af37;
+        }
+        
+        .footer-text {
+            color: #bbb;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .heroes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">FORGOTTEN WAR HEROES</div>
+            <div class="tagline">Honoring the Brave from All Nations</div>
+        </header>
+        
+        <div class="heroes-grid">
+            <!-- British Hero 1 -->
+            <div class="hero-card">
+                <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1582058091506-8897c5d5e3b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <div class="hero-flag" style="background-image: url('https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png');"></div>
+                </div>
+                <div class="hero-content">
+                    <h2 class="hero-name">Sgt. John Baskeyfield</h2>
+                    <div class="hero-meta">British Army • Battle of Arnhem • 1944</div>
+                    <p class="hero-desc">A Victoria Cross recipient who single-handedly defended against German tanks despite being severely wounded.</p>
+                    <a href="#" class="hero-link">Read Full Story</a>
+                </div>
+            </div>
+            
+            <!-- British Hero 2 -->
+            <div class="hero-card">
+                <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1592405387090-6baf5b5c8e5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <div class="hero-flag" style="background-image: url('https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png');"></div>
+                </div>
+                <div class="hero-content">
+                    <h2 class="hero-name">Lt. Col. H. Jones</h2>
+                    <div class="hero-meta">British Army • Falklands War • 1982</div>
+                    <p class="hero-desc">Posthumously awarded the Victoria Cross for his courageous leadership during the Battle of Goose Green.</p>
+                    <a href="#" class="hero-link">Read Full Story</a>
+                </div>
+            </div>
+            
+            <!-- British Hero 3 -->
+            <div class="hero-card">
+                <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <div class="hero-flag" style="background-image: url('https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png');"></div>
+                </div>
+                <div class="hero-content">
+                    <h2 class="hero-name">Sgt. Norman Jackson</h2>
+                    <div class="hero-meta">RAF • World War II • 1944</div>
+                    <p class="hero-desc">Awarded the Victoria Cross for climbing onto the wing of a burning bomber to extinguish a fire.</p>
+                    <a href="#" class="hero-link">Read Full Story</a>
+                </div>
+            </div>
+            
+            <!-- Nepalese Hero -->
+            <div class="hero-card">
+                <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1584622650114-87a2d5fbfb6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <div class="hero-flag" style="background-image: url('https://cdn.countryflags.com/thumbs/nepal/flag-400.png');"></div>
+                </div>
+                <div class="hero-content">
+                    <h2 class="hero-name">Bhakti Thapa</h2>
+                    <div class="hero-meta">Nepalese Army • Anglo-Nepalese War • 1814-1816</div>
+                    <p class="hero-desc">A brave Nepalese commander who fought fiercely against the British East India Company forces.</p>
+                    <a href="#" class="hero-link">Read Full Story</a>
+                </div>
+            </div>
+            
+            <!-- American Hero -->
+            <div class="hero-card">
+                <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1547149600-a6cdf38d9a91?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <div class="hero-flag" style="background-image: url('https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png');"></div>
+                </div>
+                <div class="hero-content">
+                    <h2 class="hero-name">Sgt. Audie Murphy</h2>
+                    <div class="hero-meta">US Army • World War II • 1943-1945</div>
+                    <p class="hero-desc">The most decorated American soldier of WWII who single-handedly held off a company of German soldiers.</p>
+                    <a href="#" class="hero-link">Read Full Story</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p class="footer-text">Forgotten War Heroes &copy; 2023 | Honoring the Brave from All Nations</p>
+        </footer>
+    </div>
+</body>
+</html>

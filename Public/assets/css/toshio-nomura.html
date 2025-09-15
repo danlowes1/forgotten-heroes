@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toshio Nomura - Forgotten Legends</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #0d0d0d;
+      color: #e6e6e6;
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-radius: 0 0 10px 10px;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    
+    .hero-image {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23111"/><path d="M0 0L100 100" stroke="%23222" stroke-width="2"/><path d="M100 0L0 100" stroke="%23222" stroke-width="2"/></svg>');
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23333" stroke-width="2"/></svg>');
+      background-size: 200px;
+      opacity: 0.2;
+      animation: pulse 20s infinite linear;
+    }
+    
+    @keyframes pulse {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+    
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      padding: 20px;
+      z-index: 2;
+    }
+    
+    .hero-content h2 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #ff6ec7;
+    }
+    
+    .content-section {
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #6a11cb;
+      border-left: 4px solid #2575fc;
+      padding-left: 15px;
+    }
+    
+    h3 {
+      font-size: 1.4rem;
+      margin: 25px 0 15px;
+      color: #ff6ec7;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
+    .quote {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      border-left: 4px solid #2575fc;
+      padding: 20px;
+      margin: 25px 0;
+      font-style: italic;
+      position: relative;
+    }
+    
+    .quote::before {
+      content: "";
+      font-size: 4rem;
+      position: absolute;
+      top: -20px;
+      left: 10px;
+      color: #2575fc;
+      opacity: 0.3;
+    }
+    
+    .image-placeholder {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      height: 300px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 25px 0;
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      margin: 30px 0;
+    }
+    
+    .timeline-item {
+      display: flex;
+      margin-bottom: 30px;
+    }
+    
+    .timeline-date {
+      min-width: 120px;
+      font-weight: bold;
+      color: #ff6ec7;
+      padding-right: 20px;
+      text-align: right;
+    }
+    
+    .timeline-content {
+      padding-left: 20px;
+      border-left: 2px solid #2575fc;
+      position: relative;
+    }
+    
+    .timeline-content::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #6a11cb;
+      border-radius: 50%;
+      left: -7px;
+      top: 5px;
+    }
+    
+    .legacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .legacy-item {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    
+    .legacy-item h4 {
+      color: #ff6ec7;
+      margin-bottom: 15px;
+    }
+    
+    footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      text-align: center;
+      padding: 30px;
+      margin-top: 50px;
+      border-radius: 10px 10px 0 0;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content h2 {
+        font-size: 1.8rem;
+      }
+      
+      .timeline-item {
+        flex-direction: column;
+      }
+      
+      .timeline-date {
+        text-align: left;
+        padding-bottom: 10px;
+      }
+      
+      .timeline-content {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 10px;
+        border-top: 2px solid #2575fc;
+      }
+      
+      .timeline-content::before {
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Toshio Nomura</h1>
+      <p class="subtitle">The Unintentional Architect of Acid House</p>
+    </header>
+    
+    <div class="hero-image">
+      <div class="hero-content">
+        <h2>The Man Behind the Squelch</h2>
+        <p>How a failed bass machine became the sound of a musical revolution</p>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h2>The Accidental Inventor</h2>
+      <p>Toshio Nomura, an engineer at Roland Corporation in Japan, designed the TB-303 Bass Line synthesizer in 1981. His goal was simple: create an affordable practice tool for guitarists that could emulate a bass guitarist.</p>
+      
+      <p>Little did he know that this "failed" product would become one of the most influential electronic instruments in music history, defining the sound of acid house and shaping the course of electronic music for decades to come.</p>
+      
+      <div class="quote">
+        "We never imagined musicians would use the 303 the way they did. We designed it to be a practice tool, but artists discovered its true potential."
+        <br>- Toshio Nomura (paraphrased)
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h2>The Rise and Fall (and Rise) of the TB-303</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">1981</div>
+          <div class="timeline-content">
+            <h3>Development</h3>
+            <p>Toshio Nomura and his team at Roland design the TB-303 as a practice aid for guitarists.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">1982</div>
+          <div class="timeline-content">
+            <h3>Release</h3>
+            <p>The TB-303 is released to the market with a price tag of $395 USD.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">1984</div>
+          <div class="timeline-content">
+            <h3>Discontinuation</h3>
+            <p>After poor sales, Roland discontinues the TB-303. Only about 10,000 units were ever produced.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">1985</div>
+          <div class="timeline-content">
+            <h3>Rediscovery</h3>
+            <p>Chicago-based musicians like Phuture discover the unique "squelching" sounds of the TB-303 when tweaking its controls during playback.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">1987</div>
+          <div class="timeline-content">
+            <h3>Acid Tracks</h3>
+            <p>Phuture's "Acid Tracks" becomes the first acid house record, defining a new genre and creating massive demand for the once-abandoned TB-303.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h2>Technical Innovation</h2>
+      
+      <p>Nomura's design incorporated several innovative features that would later become central to the acid sound:</p>
+      
+      <ul>
+        <li>A simple step sequencer for pattern programming</li>
+        <li>A resonant low-pass filter with cutoff and emphasis controls</li>
+        <li>Slide and accent functions for adding rhythmic variation</li>
+        <li>A single VCO (voltage-controlled oscillator) with square and sawtooth waves</li>
+      </ul>
+      
+      <div class="image-placeholder">
+        [Image: Roland TB-303 Bass Line Synthesizer]
+      </div>
+      
+      <p>While these features were intended to simulate bass guitar, musicians discovered that by manipulating the controls in real-time, they could create otherworldly, squelching sounds that became the signature of acid house.</p>
+    </div>
+    
+    <div class="content-section">
+      <h2>Legacy and Impact</h2>
+      
+      <p>Though initially a commercial failure, Toshio Nomura's invention eventually became one of the most sought-after instruments in electronic music. Its impact can be heard across multiple genres:</p>
+      
+      <div class="legacy-grid">
+        <div class="legacy-item">
+          <h4>Acid House</h4>
+          <p>The foundational sound of the genre, giving it the "acid" name</p>
+        </div>
+        
+        <div class="legacy-item">
+          <h4>Techno</h4>
+          <p>Widely used in Detroit and European techno scenes</p>
+        </div>
+        
+        <div class="legacy-item">
+          <h4>Electronic Music</h4>
+          <p>Influenced countless producers across multiple subgenres</p>
+        </div>
+      </div>
+      
+      <div class="quote">
+        "The 303 is arguably the most iconic electronic instrument of all time. It's a testament to how artists can transform technology in ways its creators never imagined."
+        <br>- Music Technology Magazine
+      </div>
+    </div>
+    
+    <div class="content-section">
+      <h2>The Forgotten Hero</h2>
+      
+      <p>Despite his instrument's monumental impact on music, Toshio Nomura remains largely unknown outside of synthesizer enthusiast circles. While the TB-303 became a cultural icon, its creator faded into obscurity.</p>
+      
+      <p>Nomura's story represents one of the most fascinating cases in music technology history—where a "failed" product became legendary through unintended use, shaping the sound of popular music for generations.</p>
+      
+      <p>Today, the TB-303 is revered by musicians and collectors alike, with original units selling for thousands of dollars and numerous software and hardware clones keeping its distinctive sound alive.</p>
+    </div>
+    
+    <footer>
+      <p>© 2023 Forgotten Legends | Toshio Nomura: The Unintentional Architect of Acid House</p>
+    </footer>
+  </div>
+</body>
+</html>

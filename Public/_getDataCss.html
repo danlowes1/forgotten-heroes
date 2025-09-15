@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Hero Finds</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body class="bg-gray-100 p-8 flex flex-col items-center min-h-screen">
+
+
+
+  <div class="max-w-4xl w-full">
+
+
+
+    <!-- The button to trigger the API call -->
+
+    <div class="header-ai-bar">
+
+     <a href="#" id="aiButton" class="ai-button">AI Update</a>
+
+    </div>
+
+
+
+    <!-- Container for messages like loading and errors -->
+
+    <div id="messageContainer" class="mt-4 text-center">
+
+      <!-- Loading and error messages will be displayed here -->
+
+    </div>
+
+
+
+    <!-- Container for the fetched content -->
+
+    <div id="contentContainer" class="mt-6">
+
+      <!-- Fetched data will be injected here -->
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Get references to the HTML elements
+
+      const aiButton = document.getElementById('aiButton');
+
+      const messageContainer = document.getElementById('messageContainer');
+
+      const contentContainer = document.getElementById('contentContainer');
+
+
+
+      // The API endpoint URL
+
+      const apiUrl = 'http://localhost:3001/api/hero_ai_finds/by-hero-name/jimmy%20glass';
+
+
+
+      // Add a click event listener to the button
+
+      aiButton.addEventListener('click', async (event) => {
+
+        event.preventDefault(); // Prevent the default link behavior
+
+
+
+        // Clear previous content and messages
+
+        contentContainer.innerHTML = '';
+
+        messageContainer.innerHTML = '';
+
+
+
+        // Show a loading message
+
+        messageContainer.innerHTML = '<p class="text-gray-500">Loading AI finds...</p>';
+
+        
+
+        try {
+
+          // Fetch data from the API
+
+          const response = await fetch(apiUrl);
+
+          
+
+          // Check if the response was successful
+
+          if (!response.ok) {
+
+            throw new Error(`HTTP error! status: ${response.status}`);
+
+          }
+
+          
+
+          const data = await response.json();
+
+
+
+          // Check if data is an array and not empty
+
+          if (Array.isArray(data) && data.length > 0) {
+
+            messageContainer.innerHTML = ''; // Clear loading message
+
+
+
+            // Iterate through the data and display the 'content' field
+
+            data.slice(0, 5).forEach(item => { // Limit to 5 rows as per prompt
+
+              const contentCard = document.createElement('div');
+
+              contentCard.className = 'content-card';
+
+              contentCard.textContent = item.content;
+
+              contentContainer.appendChild(contentCard);
+
+            });
+
+          } else {
+
+            messageContainer.innerHTML = '<p class="text-gray-500">No content found for this hero.</p>';
+
+          }
+
+
+
+        } catch (error) {
+
+          console.error('There was a problem with the fetch operation:', error);
+
+          messageContainer.innerHTML = `<p class="text-red-500">Failed to load content. Please check the server connection. Error: ${error.message}</p>`;
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>

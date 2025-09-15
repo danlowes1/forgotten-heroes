@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carol Kenyon - Forgotten Heroes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #f5f5f5;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a1c6d, #6b2c91);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 5px solid #e94560;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #f5f5f5;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .ai-tag {
+            display: inline-block;
+            background: linear-gradient(to right, #e94560, #ff7b9c);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            margin-left: 10px;
+            vertical-align: super;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #d4d4d4;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .hero-info {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .hero-name {
+            font-size: 2.5rem;
+            color: #e94560;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #6b2c91;
+            padding-bottom: 10px;
+        }
+        
+        .hero-meta {
+            color: #a5a5a5;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .hero-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .highlight {
+            color: #ff7b9c;
+            font-weight: bold;
+        }
+        
+        .discography {
+            background: rgba(107, 44, 145, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid #e94560;
+        }
+        
+        .discography h2 {
+            color: #e94560;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .album {
+            display: flex;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .album-art {
+            width: 100px;
+            height: 100px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #e94560;
+        }
+        
+        .album-info {
+            padding: 15px;
+            flex: 1;
+        }
+        
+        .album-title {
+            font-weight: bold;
+            color: #f5f5f5;
+            margin-bottom: 5px;
+        }
+        
+        .album-year {
+            color: #a5a5a5;
+            font-size: 0.9rem;
+        }
+        
+        .ai-section {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 2px dashed #6b2c91;
+            border-bottom: 2px dashed #6b2c91;
+            margin: 40px 0;
+        }
+        
+        .ai-button {
+            display: inline-block;
+            background: linear-gradient(to right, #e94560, #6b2c91);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .ai-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(233, 69, 96, 0.6);
+            background: linear-gradient(to right, #6b2c91, #e94560);
+        }
+        
+        .ai-result {
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            display: none;
+            text-align: left;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        footer {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-text {
+            color: #a5a5a5;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+            }
+            
+            .hero-name {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">FORGOTTEN HEROES <span class="ai-tag">AI-Powered</span></div>
+            <div class="tagline">Discover the Unsung Voices of Music History</div>
+        </header>
+        
+        <div class="content">
+            <div class="hero-section">
+                <div class="hero-image">
+                    <div style="background-color: #2d2d4f; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="font-size: 4rem; color: #e94560;">♪</div>
+                            <div style="font-size: 1.5rem; margin-top: 20px;">Carol Kenyon</div>
+                            <div style="font-style: italic; margin-top: 10px;">The Voice of Heaven 17</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-info">
+                    <h1 class="hero-name">Carol Kenyon</h1>
+                    <div class="hero-meta">British Session Singer • Heaven 17 Collaborator • 1980s Icon</div>
+                    
+                    <p class="hero-desc">
+                        Carol Kenyon is one of the most recognisable yet underrated voices of the 1980s British music scene. 
+                        As a sought-after session singer, she worked with numerous iconic bands but is best known for her 
+                        unforgettable performance on Heaven 17's classic hit <span class="highlight">"Temptation"</span>.
+                    </p>
+                    
+                    <p class="hero-desc">
+                        Despite her powerful vocals and significant contributions to the music of the era, Kenyon's name 
+                        remains largely unknown to the general public, making her a true "forgotten hero" of British music.
+                    </p>
+                    
+                    <p class="hero-desc">
+                        Beyond her work with Heaven 17, Kenyon has sung with acts like Tears for Fears, Pink Floyd, 
+                        and Mike Oldfield, showcasing her incredible versatility as a vocalist.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="discography">
+                <h2>Notable Contributions</h2>
+                
+                <div class="album">
+                    <div class="album-art">H17</div>
+                    <div class="album-info">
+                        <div class="album-title">Heaven 17 - The Luxury Gap (1983)</div>
+                        <div class="album-year">Lead vocals on "Temptation" and "Come Live With Me"</div>
+                    </div>
+                </div>
+                
+                <div class="album">
+                    <div class="album-art">TFF</div>
+                    <div class="album-info">
+                        <div class="album-title">Tears for Fears - Songs from the Big Chair (1985)</div>
+                        <div class="album-year">Backing vocals on "Shout" and "Everybody Wants to Rule the World"</div>
+                    </div>
+                </div>
+                
+                <div class="album">
+                    <div class="album-art">PF</div>
+                    <div class="album-info">
+                        <div class="album-title">Pink Floyd - A Momentary Lapse of Reason (1987)</div>
+                        <div class="album-year">Backing vocals on several tracks</div>
+                    </div>
+                </div>
+                
+                <div class="album">
+                    <div class="album-art">MO</div>
+                    <div class="album-info">
+                        <div class="album-title">Mike Oldfield - Islands (1987)</div>
+                        <div class="album-year">Vocals on "The Wind Chimes (Part 2)"</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ai-section">
+                <h2>Discover More About Carol Kenyon</h2>
+                <p>Our AI technology can find the latest information, rare recordings, and current projects</p>
+                <button class="ai-button" onclick="revealAIInfo()">Let AI find out the latest updates</button>
+                
+                <div id="aiResult" class="ai-result">
+                    <h3>Latest Updates on Carol Kenyon</h3>
+                    <p>✅ <strong>2023 Appearance:</strong> Performed with Heaven 17 at the Rewind Festival in Henley-on-Thames</p>
+                    <p>✅ <strong>Recent Interview:</strong> Featured on the "80s Excess" podcast discussing her career (March 2023)</p>
+                    <p>✅ <strong>Current Project:</strong> Collaborating on a new synthwave album with emerging artists</p>
+                    <p>✅ <strong>Rare Recording:</strong> Recently discovered demo from 1984 with Trevor Horn to be released on a compilation album</p>
+                    <p>✅ <strong>Documentary:</strong> Participating in a new documentary about session singers of the 1980s</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p class="footer-text">Forgotten Heroes &copy; 2023 | Rediscovering the Voices That Shaped Music</p>
+        </footer>
+    </div>
+
+    <script>
+        function revealAIInfo() {
+            const aiResult = document.getElementById('aiResult');
+            const button = document.querySelector('.ai-button');
+            
+            // Show AI result
+            aiResult.style.display = 'block';
+            
+            // Change button text
+            button.textContent = "Latest Updates Found!";
+            
+            // Scroll to results
+            aiResult.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

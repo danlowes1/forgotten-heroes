@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgotten Legends</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="js/components.js" defer></script>
+  <style>
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      margin: 30px 0;
+    }
+    
+    .timeline-item {
+      display: flex;
+      margin-bottom: 30px;
+    }
+    
+    .timeline-date {
+      min-width: 120px;
+      font-weight: bold;
+      padding-right: 20px;
+      text-align: right;
+    }
+    
+    .timeline-content {
+      padding-left: 20px;
+      border-left: 2px solid #2575fc;
+      position: relative;
+    }
+    
+    .timeline-content::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #6a11cb;
+      border-radius: 50%;
+      left: -7px;
+      top: 5px;
+    }
+    
+    .image-container {
+      display: flex;
+      gap: 200px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .image-container img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    @media (max-width: 1100px) {
+      .image-container img {
+        width: 100px;
+        height: 100px;
+      }
+      .image-container {
+        gap: 20px;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .image-container img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+      }
+      .image-container {
+        gap: 20px;
+      }      
+    }
+    
+    @media (max-width: 768px) {
+      .timeline-item {
+        flex-direction: column;
+      }
+      
+      .timeline-date {
+        text-align: left;
+        padding-bottom: 10px;
+      }
+      
+      .timeline-content {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 10px;
+        border-top: 2px solid #2575fc;
+      }
+      
+      .timeline-content::before {
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .image-container {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav-bar></nav-bar>
+
+      <h1>Tadao Kikumoto - The Unintentional Architect of Acid House</h1>
+      <p>Music Technology 1981</p>
+
+        <p>Tadao Kikumoto is a Japanese engineer who worked for Roland Corporation and designed the iconic TB-303 Bass Line synthesizer. While the product was initially a commercial failure, it would later become one of the most influential electronic instruments in music history.</p>
+        
+        <p>Kikumoto's invention unintentionally spawned the entire acid house genre and revolutionized electronic music, yet he remains largely unknown outside of synthesizer enthusiast circles.</p>
+        
+        <!-- Images here -->
+        <div class="image-container">
+          <img src="images/tadao-kikumoto-2.jpg" alt="Tadao Kikumoto, designer of the TB-303">
+          <img src="images/tadao-kikumoto-303.jpg" alt="Tadao Kikumoto with the TB-303">
+
+        </div>
+
+        <p>Released in 1981, the Roland TB-303 was marketed as a bass accompaniment for solo guitarists. It featured a built-in sequencer and a distinctive sound that was meant to mimic a bass guitar. However, the machine's artificial sound and complex programming interface led to poor sales, and it was discontinued in 1984.</p>
+        <p>In the mid-1980s, the TB-303 found a second life when it was discovered by Chicago house musicians. By manipulating the machine's controls while it played, they created a new, squelching sound that became the hallmark of acid house music. Tracks like Phuture's "Acid Tracks" (1987) showcased the TB-303's unique capabilities and sparked a global movement in electronic dance music.</p>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/eWpA_xwT1to" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h1>The Original Purpose</h1>
+        <p>In 1981, Tadao Kikumoto and his team at Roland designed the TB-303 as an automatic bass accompaniment for guitarists. The idea was that a guitarist could program a bass sequence into the 303 and have a virtual bassist play along with them during practice.</p>
+        
+        <div class="quote">
+          "We never imagined musicians would use the 303 the way they did. We designed it to be a practice tool, but artists discovered its true potential."
+          <br>- Tadao Kikumoto (paraphrased)
+        </div>
+        
+        <p>The unit was expensive, and the process of programming bass patterns was unintuitive. Most importantly, the artificial, squelching sound it produced was considered cheesy and nothing like a real bass guitar. It was a commercial failure, and Roland discontinued it in 1984 after only selling around 10,000 units.</p>
+        
+        <h1>The Accidental Revolution</h1>
+        <p>The 303's failure led to it being sold off cheaply on the second-hand market, which is how it found its way into the hands of aspiring musicians in Chicago.</p>
+        
+        <p>DJs and producers like Phuture (Spanky, Herb J, and DJ Pierre), Larry Heard (Mr. Fingers), and Farley "Jackmaster" Funk discovered that if they tweaked the knobs (especially the filter cutoff, resonance, and envelope modulation) while the sequencer was running, the machine would produce wild, squelching, acidic, and otherworldly sounds.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">1981</div>
+            <div class="timeline-content">
+              <h3>Development</h3>
+              <p>Tadao Kikumoto and his team at Roland design the TB-303 as a practice aid for guitarists.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">1982</div>
+            <div class="timeline-content">
+              <h3>Release</h3>
+              <p>The TB-303 is released to the market with a price tag of $395 USD.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">1984</div>
+            <div class="timeline-content">
+              <h3>Discontinuation</h3>
+              <p>After poor sales, Roland discontinues the TB-303.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">1985</div>
+            <div class="timeline-content">
+              <h3>Rediscovery</h3>
+              <p>Chicago-based musicians discover the unique "squelching" sounds of the TB-303.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">1987</div>
+            <div class="timeline-content">
+              <h3>Acid Tracks</h3>
+              <p>Phuture's "Acid Tracks" becomes the first acid house record, creating massive demand for the TB-303.</p>
+            </div>
+          </div>
+        </div>
+
+        <h1>Legacy and Impact</h1>
+        <p>Phuture's 1985 track "Acid Tracks" (created accidentally during a jam session) became the blueprint for this new sound. The track spread through Chicago's underground scene and gave the sound its name: Acid House.</p>
+        
+        <p>Though initially a failure in its intended purpose, the Roland TB-303 became one of the most influential electronic instruments ever made. It is the definitive sound of Acid House and was crucial to the development of techno, trance, and countless other electronic music genres.</p>
+        
+        <div class="quote">
+          "The 303 is arguably the most iconic electronic instrument of all time. It's a testament to how artists can transform technology in ways its creators never imagined."
+          <br>- Music Technology Magazine
+        </div>
+        
+        <p>Today, the TB-303 is revered by musicians and collectors alike, with original units selling for thousands of dollars and numerous software and hardware clones keeping its distinctive sound alive.</p>
+        
+        <p>Kikumoto's story represents one of the most fascinating cases in music technology history—where a "failed" product became legendary through unintended use, shaping the sound of popular music for generations.</p>
+
+      <site-footer></site-footer>
+</body>
+</html>

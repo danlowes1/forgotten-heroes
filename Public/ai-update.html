@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slogan Suggestions - Forgotten Heroes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a2a6c, #00416a);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #fdbb2d;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #fdbb2d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #1a2a6c;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            border-bottom: 3px solid #fdbb2d;
+            padding-bottom: 15px;
+        }
+        
+        .slogan-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .slogan-box {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid #1a2a6c;
+        }
+        
+        .slogan-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .slogan {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .slogan-desc {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .ai-button {
+            display: block;
+            width: 300px;
+            margin: 40px auto;
+            padding: 15px 25px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(26, 42, 108, 0.4);
+        }
+        
+        .ai-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 42, 108, 0.6);
+            background: linear-gradient(to right, #b21f1f, #1a2a6c);
+        }
+        
+        .demo-section {
+            background: #eef4ff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 40px;
+            border: 2px dashed #1a2a6c;
+        }
+        
+        .demo-section h2 {
+            color: #1a2a6c;
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .slogan-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .slogan {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">FORGOTTEN HEROES</div>
+            <div class="tagline">Discover Their Stories with AI Technology</div>
+        </header>
+        
+        <div class="content">
+            <h1>AI-Powered Slogan Suggestions</h1>
+            
+            <div class="slogan-container">
+                <div class="slogan-box">
+                    <div class="slogan">"Uncover Lost Stories with AI"</div>
+                    <p class="slogan-desc">Suggests discovery and uses familiar "lost stories" language that resonates with history enthusiasts.</p>
+                </div>
+                
+                <div class="slogan-box">
+                    <div class="slogan">"History Rediscovered Through AI"</div>
+                    <p class="slogan-desc">Emphasizes the innovative aspect while keeping the focus on historical rediscovery.</p>
+                </div>
+                
+                <div class="slogan-box">
+                    <div class="slogan">"Meet the Heroes Behind the History"</div>
+                    <p class="slogan-desc">Focuses on the human element while hinting at deeper stories to be uncovered.</p>
+                </div>
+                
+                <div class="slogan-box">
+                    <div class="slogan">"AI-Powered History Exploration"</div>
+                    <p class="slogan-desc">Clear and straightforward, emphasizing the exploratory nature of the experience.</p>
+                </div>
+                
+                <div class="slogan-box">
+                    <div class="slogan">"Where Technology Meets Legacy"</div>
+                    <p class="slogan-desc">Appeals to traditionalists by framing AI as a tool to honor legacy rather than replace it.</p>
+                </div>
+                
+                <div class="slogan-box">
+                    <div class="slogan">"Discover What Time Forgot"</div>
+                    <p class="slogan-desc">Romantic and intriguing, positioning AI as a time machine to rediscover lost stories.</p>
+                </div>
+            </div>
+            
+            <div class="demo-section">
+                <h2>See How It Works</h2>
+                <!-- <p>Look for this button on any hero's page to unlock their full story:</p> -->
+                <p>Look for this button on any hero's page to recieve any up-to-date information:</p>                
+                <button class="ai-button">AI Update</button>
+                <p>One click reveals specific information search engines, such as Google, may not find.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Forgotten Heroes &copy; 2023 | Bringing History to Life with AI Technology</p>
+        </footer>
+    </div>
+</body>
+</html>
