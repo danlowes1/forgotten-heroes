@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = 'http://localhost:3001/api/hero_ai_finds/by-hero-name/jimmy%20glass';
 
     aiButton.addEventListener('click', function(event) {
-        event.preventDefault();   // Prevent default link behavior
+        event.preventDefault();
 
         contentContainer.innerHTML = '';
         messageContainer.innerHTML = '';
@@ -23,11 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show spinner instead of countdown
         aiButton.innerHTML = '<span class="spinner"></span>';
 
-        // Pause for 3 seconds before fetching
-        setTimeout(async () => {
-            // Show a loading message
+        // Show loading message after 1 second
+        setTimeout(() => {
             messageContainer.innerHTML = '<p class="text-gray-500">Loading AI finds...</p>';
+        }, 1000);
 
+        // Wait 3 seconds total before fetching data
+        setTimeout(async () => {
             try {
                 const response = await fetch(apiUrl);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -54,8 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
             aiButton.innerHTML = originalText;
             aiButton.disabled = false;
             aiButton.style.pointerEvents = 'auto';
-        }, 3000); // <-- 3 second pause
+        }, 3000); // 3 second pause
     });
+
 
 
 });
