@@ -14,8 +14,9 @@ class NavBar extends HTMLElement {
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="sport.html">Sport</a></li>
-            <li><a href="film.html">Film</a></li>
             <li><a href="music.html">Music</a></li>
+            <li><a href="film.html">Film</a></li>            
+            <li><a href="popculture.html">Popular Culture</a></li>            
             <li><a href="conflict.html">Conflict</a></li>
             <li><a href="robots.html">Bots</a></li>
             <li><a href="about.html">About</a></li>
