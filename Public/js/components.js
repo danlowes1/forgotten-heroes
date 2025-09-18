@@ -3,6 +3,17 @@
 class NavBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
+      <script>
+        const burger = document.querySelector(".burger");
+        const menu = document.querySelector(".menu-bar");
+
+        burger.addEventListener("click", () => {
+          burger.classList.toggle("active");
+          menu.classList.toggle("active");
+        });
+      </script>
+
+          
       <header class="site-header">
         <div class="header-left">
           <div class="site-title">
@@ -10,19 +21,28 @@ class NavBar extends HTMLElement {
           </div>
           <a href="ai-info.html" class="ai-button">AI Powered</a>
         </div>
+
+        <!-- Burger Button -->
+        <button class="burger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
         <nav class="menu-bar">
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="sport.html">Sport</a></li>
             <li><a href="music.html">Music</a></li>
-            <li><a href="film.html">Film</a></li>            
-            <li><a href="popculture.html">Popular Culture</a></li>            
+            <li><a href="film.html">Film</a></li>
+            <li><a href="popculture.html">Popular Culture</a></li>
             <li><a href="conflict.html">Conflict</a></li>
             <li><a href="robots.html">Bots</a></li>
             <li><a href="about.html">About</a></li>
           </ul>
         </nav>
       </header>
+
     `;
   }
 }
@@ -75,6 +95,24 @@ class SiteFooter extends HTMLElement {
   }
 }
 customElements.define("site-footer", SiteFooter);
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const currentPath = window.location.pathname.split("/").pop(); // e.g. "sport.html"
+  const menuLinks = document.querySelectorAll(".menu-bar ul li a");
+
+  menuLinks.forEach(link => {
+    const linkPath = link.getAttribute("href");
+    if (linkPath === currentPath) {
+      link.classList.add("active");
+    }
+  });
+});
+
+
+
+
 
 
 // class NavBar extends HTMLElement {

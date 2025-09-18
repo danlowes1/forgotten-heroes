@@ -102,6 +102,98 @@ h1, h2, h3 {
 }
 
 
+.menu-bar ul li a.active {
+  /* border-bottom: 2px solid var(--accent-color); */
+  color: var(--accent-color);
+}
+
+
+
+
+
+
+/* Burger button hidden by default (desktop) */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--text-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .menu-bar {
+    position: absolute;
+    top: 75px; /* below header */
+    right: 0;
+    background: var(--nav-color);
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    flex-direction: column;
+  }
+
+  .menu-bar ul {
+    flex-direction: column;
+  }
+
+  .menu-bar ul li a {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid var(--accent-color);
+  }
+
+  /* When active (open) */
+  .menu-bar.active {
+    max-height: 500px; /* large enough to fit all links */
+  }
+
+  /* Animate burger into "X" */
+  .burger.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(7px);
+  }
+  .burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-7px);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .ai-button {
@@ -229,12 +321,30 @@ ai-bar {
 
 .hero-box {
   flex: 1 1 400px;
+  position: relative; /* so the flag can be positioned absolutely */position: relative; /* so the flag can be positioned absolutely */
   background: var(--nav-color);
   border: 2px solid var(--accent-color);
   border-radius: 12px;
   box-shadow: 1px 2px 10px rgba(0,0,0,0.6);
   padding: 20px;
 }
+
+
+.flag {
+  position: absolute;
+  top: 15px;
+  right: -35px;
+  background: linear-gradient(135deg, #e94560, #ff7b9c);
+  color: white;
+  padding: 5px 40px;
+  font-size: 0.8em;
+  font-weight: bold;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  pointer-events: none; /* make it "decorative" only */
+}
+
 
 .hero-box h1 {
   font-size: 1.6em;
