@@ -25,6 +25,12 @@ Hero_ai_find.init(
       defaultValue: Sequelize.NOW,
 
     },
+    ai_model: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      sefaultValue: 'Gemini'
+    },
+
   },
   {
     sequelize,

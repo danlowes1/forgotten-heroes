@@ -5,8 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageContainer = document.getElementById('messageContainer');
     const contentContainer = document.getElementById('contentContainer');
 
+    // Get the current page's file name from the URL pathname
+    const fullPath = window.location.pathname;
+    const fileNameWithExtension = fullPath.substring(fullPath.lastIndexOf('/') + 1);
+    
+    // Remove the file extension and replace hyphens with spaces
+    let heroName = fileNameWithExtension.split('.')[0].replace(/-/g, ' ');
+
     // The API endpoint URL
-    const apiUrl = 'http://localhost:3001/api/hero_ai_finds/by-hero-name/jimmy%20glass';
+    const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
 
     aiButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -27,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             messageContainer.innerHTML = '<p class="text-gray-500">Loading AI finds...</p>';
         }, 1000);
+
+        //getFactsAboutPerson(personName);
 
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
@@ -58,9 +67,42 @@ document.addEventListener('DOMContentLoaded', () => {
             aiButton.style.pointerEvents = 'auto';
         }, 3000); // 3 second pause
     });
-
-
-
 });
 
 
+
+// // import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+// // const API_KEY = "YOUR_GEMINI_API_KEY"; // Keep this secret — don't expose in production
+// // const genAI = new GoogleGenerativeAI(API_KEY);
+
+// // async function getFactsAboutPerson(name) {
+// //   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+// //   const prompt = `
+// //     Give me up to 10 interesting facts about ${name}.
+// //     Each fact should be 2-3 sentences long.
+// //     Return them as a JSON array of objects with "factNumber" and "factText".
+// //   `;
+
+// //   const result = await model.generateContent(prompt);
+// //   const text = result.response.text();
+
+// //   // Try parsing JSON output
+// //   let facts;
+// //   try {
+// //     facts = JSON.parse(text);
+// //   } catch (e) {
+// //     console.error("Failed to parse JSON from Gemini:", text);
+// //     return;
+// //   }
+
+// //   console.log("Facts:", facts);
+
+// //   // Send to backend to store in DB
+// //   await fetch("/api/saveFacts", {
+// //     method: "POST",
+// //     headers: { "Content-Type": "application/json" },
+// //     body: JSON.stringify({ person: name, facts })
+// //   });
+// // }

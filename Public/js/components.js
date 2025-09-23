@@ -72,7 +72,7 @@ class SiteFooter extends HTMLElement {
     this.innerHTML = `
       <footer class="site-footer">
         <div class="footer-left">
-          <img src="images/forgotten-legends-banner.jpeg" width="200" height="200" alt="Forgotten Legends Banner">
+
         </div>
 
         <div class="footer-middle">
@@ -94,6 +94,12 @@ class SiteFooter extends HTMLElement {
     `;
   }
 }
+
+
+        // <div class="footer-left">
+        //   <img src="images/forgotten-legends-banner.jpeg" width="200" height="200" alt="Forgotten Legends Banner">
+        // </div>
+
 customElements.define("site-footer", SiteFooter);
 
 

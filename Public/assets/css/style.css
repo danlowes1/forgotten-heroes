@@ -26,13 +26,24 @@ body {
   background-size: 20px 20px;
 }
 
-/* Victorian-like headings */
-h1, h2, h3 {
+
+h1, h3 {
+  font-family: var(--font-heading);
+  color: var(--accent-color);
+  text-shadow: 1px 1px 2px black;
+  letter-spacing: 1px;
+   margin-bottom: 5px;
+}
+
+ h2  {
+  margin-top: 1px; 
   font-family: var(--font-heading);
   color: var(--accent-color);
   text-shadow: 1px 1px 2px black;
   letter-spacing: 1px;
 }
+
+
 .site-logo {
   height: 100px;
   margin-right: 15px;
@@ -108,6 +119,36 @@ h1, h2, h3 {
 }
 
 
+.demo-section {
+  background: transparent;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 40px;
+  border: 2px dashed var(--accent-color);
+}
+
+.demo-section h2 {
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  font: var(--font-heading);
+  font-size: 2rem;
+  
+}
+/* .ai-button-locked {
+    display: block;
+    width: 300px;
+    margin: 40px auto;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #1a2a6c, #b21f1f);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(26, 42, 108, 0.4);
+} */
 
 
 
@@ -177,22 +218,6 @@ h1, h2, h3 {
     transform: rotate(-45deg) translateY(-7px);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -442,8 +467,8 @@ ai-bar {
 
 .quote {
     position: relative;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    color: white;
+    background: linear-gradient(135deg, #e9e6ec 0%, #e2e5eb 100%);
+    color: rgb(14, 1, 1);
     padding: 30px 40px;
     border-radius: 10px;
     margin: 30px 0;
@@ -461,7 +486,7 @@ ai-bar {
     left: 0px;
     font-size: 5rem;
     font-family: Georgia, serif;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(20, 2, 2, 0.2);
     line-height: 1;
 }
 
