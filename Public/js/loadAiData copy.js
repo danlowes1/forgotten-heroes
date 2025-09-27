@@ -1,33 +1,28 @@
 // Public/js/loadAiData.js
 document.addEventListener('DOMContentLoaded', () => {
+
     const aiButton = document.getElementById('aiButton');
     const messageContainer = document.getElementById('messageContainer');
     const contentContainer = document.getElementById('contentContainer');
+
 
     const fullPath = window.location.pathname;
     const fileNameWithExtension = fullPath.substring(fullPath.lastIndexOf('/') + 1);
     
     let heroName = fileNameWithExtension.split('.')[0].replace(/-/g, ' ');
-  
-    heroName = heroName.toLowerCase().replace(/\b\w/g, (char) => {
-        return char.toUpperCase();
-    });
-
-
+    
     const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
 
     const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
 
-    aiButton.addEventListener('click', async function(event) {
+    aiButton.addEventListener('click', function(event) {
         event.preventDefault();
-
-        let heroId , heroRecord;
-        const originalText = aiButton.textContent;
 
         contentContainer.innerHTML = '';
         messageContainer.innerHTML = '';
 
-        // Disable the button
+        const originalText = aiButton.textContent;
+
         aiButton.disabled = true;
         aiButton.style.pointerEvents = 'none';
 
@@ -39,39 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             messageContainer.innerHTML = '<p class="text-gray-500">Loading AI finds...</p>';
         }, 1000);
 
+
         const dataHero = { hero_name: heroName };
-        try {
-            // 2. Call the POST endpoint
-            const response = await fetch("http://localhost:3001/api/heroes/find-or-create", {
-                method: "POST", 
-                headers: {
-                    "Content-Type": "application/json", // Important: Tells the server to expect JSON
-                },
-                // Convert the JavaScript object to a JSON string
-                body: JSON.stringify(dataHero),
-            });
-
-            // Check if the network request was successful (status 200-299)
-            if (!response.ok) {
-                // Throw an error if the status code indicates a problem (e.g., 500)
-                const errorData = await response.json();
-                throw new Error(`API Error (${response.status}): ${errorData.error || errorData.message}`);
-            }
-
-            // 3. Process the JSON response
-            const result = await response.json();
-
-            // Return the hero object from the response (it contains the ID!)
-            heroRecord = result.hero;
-            heroId = heroRecord.id; // Extract the ID
-
-        } catch (error) {
-            console.error("Error during find or create operation:", error.message);
-            // return null; 
-        }
-
-        console.log("Hero ID:", heroId);
-
+ 
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
             try {
@@ -79,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
 
+                
                 // Log the response from your Gemini backend
                 const responseAi = await fetch(geminiApiUrl);
                 if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
