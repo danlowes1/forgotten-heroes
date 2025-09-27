@@ -20,7 +20,15 @@ const API_KEY = process.env.GEMINI_API_KEY;
 
 const { GoogleGenAI } = require("@google/genai"); // Import correctly
 const ai = new GoogleGenAI({ apiKey: API_KEY });
+// const prompt = "Explain how AI works in a few words";
 
+// const prompt = `
+//     Give me up to 5 interesting facts about Terry Wogan.
+//     Each fact should be 2-3 sentences long.
+// `;
+
+
+// **CHANGE 3: Get heroName from the request and build the prompt inside the route**
 app.get("/generate-ai-content", async (req, res) => {
     // Read the heroName from the query string (e.g., ?heroName=...)
     const heroName = req.query.heroName;
@@ -33,6 +41,7 @@ app.get("/generate-ai-content", async (req, res) => {
     const prompt = `
         Give me up to 5 interesting facts about ${heroName}.
         Each fact should be 2-3 sentences long.
+        Please return the facts as a JSON array of objects, where each object has a single 'fact' property.
     `; // Added JSON request to get a structured array (Best Practice from previous step)
 
     // Optional: Define the JSON Schema here (Highly recommended for structured output)
@@ -50,28 +59,25 @@ app.get("/generate-ai-content", async (req, res) => {
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: prompt,
+            // Add configuration for structured output
             config: {
                 responseMimeType: "application/json",
                 responseSchema: FactsArraySchema,
             },
         });
-        console.log("1. Response text:", response.text);
+        
+        // Since we requested JSON, the response.text is a JSON string
+        const factsArray = JSON.parse(response.text.trim());
 
-        res.json({ text: response.text });
-        // res.json({ facts: factsArray })
-
-        // console.log(`2. Generated facts for: ${heroName}`);
+        console.log(`Generated facts for: ${heroName}`);
         
         // **CHANGE 4: Return the parsed array directly**
-        // res.json({ facts: factsArray });
-
+        res.json({ facts: factsArray });
     } catch (error) {
         console.error(`Error generating content for ${heroName}:`, error);
         res.status(500).json({ error: "Failed to generate AI content" });
     }
 });
-
-
 
 const PORT = process.env.PORT || 3001;
 

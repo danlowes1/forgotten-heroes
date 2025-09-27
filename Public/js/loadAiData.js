@@ -15,9 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // The API endpoint URL
     const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
 
+    // The API endpoint for your Gemini content
+    //const geminiApiUrl = 'http://localhost:3001/generate-ai-content';
+    const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
+
     aiButton.addEventListener('click', function(event) {
         event.preventDefault();
 
+
+
+
+        
         contentContainer.innerHTML = '';
         messageContainer.innerHTML = '';
 
@@ -35,15 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
             messageContainer.innerHTML = '<p class="text-gray-500">Loading AI finds...</p>';
         }, 1000);
 
-        //getFactsAboutPerson(personName);
+        // getFactsAboutPerson(heroName);
 
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
             try {
                 const response = await fetch(apiUrl);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
                 const data = await response.json();
+
+                
+                // Log the response from your Gemini backend
+                const responseAi = await fetch(geminiApiUrl);
+                if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
+                const dataAi = await responseAi.json();
+
+                console.log("Response from your Gemini backend:", dataAi.text);
 
                 if (Array.isArray(data) && data.length > 0) {
                     messageContainer.innerHTML = ''; // Clear loading message
@@ -68,6 +83,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000); // 3 second pause
     });
 });
+
+
+async function  getFactsAboutPerson(name) {
+
+
+    console.log(name);
+
+    const { GoogleGenAI } = require("@google/genai"); // Import correctly
+    const API_KEY = "AIzaSyDp3Nywb916n6Efwh4qu72dPI4yZBOo2dA";
+    const ai = new GoogleGenAI({ apiKey: API_KEY });
+
+    const prompt = `
+        Give me up to 10 interesting facts about ${name}.
+        Each fact should be 2-3 sentences long.
+        Return them as a JSON array of objects with "factNumber" and "factText".
+    `;
+    const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+    });
+
+    console.log("Response text:", response.text);
+
+}
+
+
+
 
 
 
