@@ -36,6 +36,32 @@ app.get("/by-hero-name/:hero_name", async (req, res) => {
   }
 });
 
+// Find by hero_id
+app.get("/by-hero-id/:hero_id", async (req, res) => {
+  try {
+    const hero_id = req.params.hero_id; // Get the ID from the route parameters
+    const hero_ai_finds = await Hero_ai_find.findAll({
+      where: {
+        hero_id: hero_id, // Filter by the hero_id field
+      },
+      // You may also want to include the associated Hero model here
+      // include: [{ model: Hero }] 
+    });
+
+    if (hero_ai_finds.length === 0) {
+      return res
+        .status(404)
+        .json({ message: `No Hero AI finds found for hero ID: ${hero_id}` });
+    }
+    
+    // Return the array of records
+    res.json(hero_ai_finds);
+    
+  } catch (error) {
+    console.error(error); 
+    res.status(500).json({ error: "Error retrieving hero_ai_finds by hero ID" });
+  }
+});
 
 
 // Route to get a specific post by ID

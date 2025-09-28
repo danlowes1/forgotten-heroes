@@ -14,14 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
+    // const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
 
     const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
 
     aiButton.addEventListener('click', async function(event) {
         event.preventDefault();
 
-        let heroId , heroRecord;
+        let heroId , heroRecord, apiUrl;
         const originalText = aiButton.textContent;
 
         contentContainer.innerHTML = '';
@@ -75,8 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
             try {
+                apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-id/${heroId}`;
                 const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                // if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`); // removed as error handled in route
+
                 const data = await response.json();
 
                 // Log the response from your Gemini backend
