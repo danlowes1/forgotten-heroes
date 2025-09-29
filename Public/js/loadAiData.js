@@ -14,9 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    // 1. Get the contents of the first <h1>
+    const firstHeader = document.querySelector("h1")?.textContent.trim();
+    console.log("First header:", firstHeader);
+
+    // 2. Get all <p> contents as plain text
+    const paragraphs = Array.from(document.querySelectorAll("p")).map(p => p.textContent.trim());
+    console.log("Paragraphs:", paragraphs);
+
+
+
     // const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
 
-    const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
+    const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
 
     aiButton.addEventListener('click', async function(event) {
         event.preventDefault();
@@ -74,19 +84,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
-            try {
+            // try {
                 apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-id/${heroId}`;
                 const response = await fetch(apiUrl);
-                // if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`); // removed as error handled in route
-
+                if (!response.ok)  throw new Error(`Server failed to process request. Status: ${response.status}`);
                 const data = await response.json();
 
                 // Log the response from your Gemini backend
-                const responseAi = await fetch(geminiApiUrl);
-                if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
-                const dataAi = await responseAi.json();
+                if (data.length === 0) {
+                    const responseAi = await fetch(geminiApiUrl);
+                    if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
+                    
+                    
+                    const dataAi = await responseAi.json();
 
-                console.log("Response from your Gemini backend:", dataAi.text);
+                    // console.log("Response from your Gemini backend:", dataAi.text);
+
+                    if (dataAi && dataAi.length > 0) {
+                        dataAi.forEach((item, index) => {
+                            console.log(`Fact #${index + 1}: ${item}`);
+                        });
+
+                    } else {
+                        console.log("AI query was successful, but no facts were returned.");
+                    }
+                }
 
                 if (Array.isArray(data) && data.length > 0) {
                     messageContainer.innerHTML = ''; // Clear loading message
@@ -99,10 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     messageContainer.innerHTML = '<p class="text-gray-500">No content found for this hero.</p>';
                 }
-            } catch (error) {
-                console.error('Fetch error:', error);
-                messageContainer.innerHTML = `<p class="text-red-500">Failed to load content. Error: ${error.message}</p>`;
-            }
+            // } catch (error) {
+            //     console.error('Fetch error:', error);
+            //     messageContainer.innerHTML = `<p class="text-red-500">Failed to load content. Error: ${error.message}</p>`;
+            // }
 
             // Reset button back to original state
             aiButton.innerHTML = originalText;
@@ -112,14 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
+// Not in use
 async function  getFactsAboutPerson(name) {
 
 
     console.log(name);
 
     const { GoogleGenAI } = require("@google/genai"); // Import correctly
-    const API_KEY = "AIzaSyDp3Nywb916n6Efwh4qu72dPI4yZBOo2dA";
+    const API_KEY = "xxxxxxxxxxxxxxxxxxx";
     const ai = new GoogleGenAI({ apiKey: API_KEY });
 
     const prompt = `

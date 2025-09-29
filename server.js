@@ -21,21 +21,22 @@ const API_KEY = process.env.GEMINI_API_KEY;
 const { GoogleGenAI } = require("@google/genai"); // Import correctly
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
+
+// Gemini ai content generation 
 app.get("/generate-ai-content", async (req, res) => {
-    // Read the heroName from the query string (e.g., ?heroName=...)
     const heroName = req.query.heroName;
 
     if (!heroName) {
         return res.status(400).json({ error: "Missing 'heroName' query parameter." });
     }
 
-    // Build the prompt dynamically using the heroName variable
     const prompt = `
         Give me up to 5 interesting facts about ${heroName}.
         Each fact should be 2-3 sentences long.
-    `; // Added JSON request to get a structured array (Best Practice from previous step)
+        They only shoud be facts that are not commonly known. They can be things like where are they now, what are they doing, what is something interesting about their life that most people don't know.
+        If you can't come up with 5, just give me what you can.
+    `;
 
-    // Optional: Define the JSON Schema here (Highly recommended for structured output)
     const FactsArraySchema = {
         type: "array",
         items: {
@@ -55,21 +56,69 @@ app.get("/generate-ai-content", async (req, res) => {
                 responseSchema: FactsArraySchema,
             },
         });
+
         console.log("1. Response text:", response.text);
 
-        res.json({ text: response.text });
-        // res.json({ facts: factsArray })
+        // Parse JSON and flatten into an array of strings
+        const factsArray = JSON.parse(response.text).map(item => item.fact);
 
-        // console.log(`2. Generated facts for: ${heroName}`);
-        
-        // **CHANGE 4: Return the parsed array directly**
-        // res.json({ facts: factsArray });
+        res.json(factsArray); // return ["fact1", "fact2", "fact3", ...]
 
     } catch (error) {
         console.error(`Error generating content for ${heroName}:`, error);
         res.status(500).json({ error: "Failed to generate AI content" });
     }
 });
+
+
+
+
+
+
+// app.get("/generate-ai-content", async (req, res) => {
+//     // Read the heroName from the query string (e.g., ?heroName=...)
+//     const heroName = req.query.heroName;
+
+//     if (!heroName) {
+//         return res.status(400).json({ error: "Missing 'heroName' query parameter." });
+//     }
+
+//     // Build the prompt dynamically using the heroName variable
+//     const prompt = `
+//         Give me up to 5 interesting facts about ${heroName}.
+//         Each fact should be 2-3 sentences long.
+//     `; // Added JSON request to get a structured array (Best Practice from previous step)
+
+//     // Optional: Define the JSON Schema here (Highly recommended for structured output)
+//     const FactsArraySchema = {
+//         type: "array",
+//         items: {
+//             type: "object",
+//             properties: {
+//                 fact: { type: "string", description: "A single interesting fact, 2-3 sentences long." }
+//             }
+//         }
+//     };
+
+//     try {
+//         const response = await ai.models.generateContent({
+//             model: "gemini-2.5-flash",
+//             contents: prompt,
+//             config: {
+//                 responseMimeType: "application/json",
+//                 responseSchema: FactsArraySchema,
+//             },
+//         });
+//         console.log("1. Response text:", response.text);
+
+//         res.json({ text: response.text });
+
+
+//     } catch (error) {
+//         console.error(`Error generating content for ${heroName}:`, error);
+//         res.status(500).json({ error: "Failed to generate AI content" });
+//     }
+// });
 
 
 

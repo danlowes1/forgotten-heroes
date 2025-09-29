@@ -44,16 +44,8 @@ app.get("/by-hero-id/:hero_id", async (req, res) => {
       where: {
         hero_id: hero_id, // Filter by the hero_id field
       },
-      // You may also want to include the associated Hero model here
-      // include: [{ model: Hero }] 
     });
 
-    if (hero_ai_finds.length === 0) {
-      return res
-        .status(404)
-        .json({ message: `No Hero AI finds found for hero ID: ${hero_id}` });
-    }
-    
     // Return the array of records
     res.json(hero_ai_finds);
     
@@ -65,7 +57,6 @@ app.get("/by-hero-id/:hero_id", async (req, res) => {
 
 
 // Route to get a specific post by ID
-// This route is now placed after the more specific route.
 app.get("/:id", async (req, res) => {
   try {
     const hero_ai_find = await Hero_ai_find.findByPk(req.params.id);
