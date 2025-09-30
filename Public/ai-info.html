@@ -3,27 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgotten Legends </title>
+    <title>Forgotten Legends - How It Works</title>
     <link rel="stylesheet" href="assets/css/style.css">
-  <script src="js/components.js" defer></script>
+    <script src="js/components.js" defer></script>
 </head>
 <body>
-
-
     <nav-bar></nav-bar>
 
-
+    <main>
+        <h1>See How It Works</h1>
+        <p>Forgotten Legends is built with a smart, efficient backend that ensures you get the most interesting information as quickly as possible. Here's a peek behind the curtain at how our "AI Update" feature brings these stories to life.</p>
+        
         <div class="demo-section">
-            <h2>See How It Works</h2>
-            <!-- <p>Look for this button on any hero's page to unlock their full story:</p> -->
-            <p>Look for this button on any hero's page to recieve any up-to-date information:</p>                
-            <!-- <button class="ai-button-locked">AI Update</button> -->
-             <ai-bar></ai-bar>
-            <p>One click reveals specific information search engines, such as Google, may not find.</p>
+            <h2>Try It Yourself</h2>
+            <p>Look for this button on any hero's page to receive any up-to-date information:</p> 
+             <p>One click reveals specific information search engines, such as Google, may not find.</p>               
+            <ai-bar></ai-bar>
+           
         </div>
-    
+        
+        <div class="explanation-section">
+            <h2>The Technology Behind Forgotten Legends</h2>
+
+            <p>The majority of content on this page you see before you has been written by an AI bot. This particular piece of text was written (typed-out on a keyboard) by the human
+                who developed this website. </p>
+            <p>There are three different levels of explanation below, each with a different focus and level of detail. Feel free to read whichever one suits your interest. 
+                These were 3 options that were given as suggestions on how to descripe (sic) how the AI feature works on this site.</p>
+            <div class="explanation-card">
+                <h3>User-Focused & Magical</h3>
+                <p>Forgotten Legends is more than a static archive; it's a living project that gets smarter over time. Here's how we bring these stories to life and keep them updated.</p>
+                
+                <div class="highlight">
+                    <h4>The Living Legend System</h4>
+                    <p>At the bottom of every legend's page, you'll find our <strong>"AI Update"</strong> button. This is your portal to discovering even more about these incredible figures.</p>
+                </div>
+                
+                <ul>
+                    <li><strong>Your Curiosity Fuels Discovery:</strong> When you click the button, our system searches for fresh insights, little-known facts, or recent information about the legend.</li>
+                    <li><strong>Instant Knowledge, Powered by AI:</strong> Behind the scenes, your click sends a secure request to a powerful AI language model. We ask it to dig deeper than a standard search.</li>
+                    <li><strong>A Collective Memory:</strong> To make the system fast and efficient for everyone, we store every new discovery in our database. Most of the time, you're seeing a cached result.</li>
+                    <li><strong>The Thrill of the New:</strong> The first time a legend's page is visited, your click is guaranteed to generate a brand-new, unique piece of information.</li>
+                </ul>
+                
+                <p>In short, you're not just reading history—you're helping us build a richer, more detailed one.</p>
+            </div>
+            
+            <div class="explanation-card">
+                <h3>Balanced & Clear Explanation</h3>
+                <p>This version strikes a good balance, explaining the process clearly without being intimidating. It's perfect for a portfolio as it demonstrates you can articulate technical concepts.</p>
+                
+                <div class="highlight">
+                    <h4>The "AI Update" Button: Your Request for Deeper Knowledge</h4>
+                </div>
+                
+                <ol>
+                    <li><strong>You Spark the Search:</strong> On every legend's page, the <strong>"AI Update"</strong> button is your way of asking for more—more obscure facts, recent news, or hidden details.</li>
+                    <li><strong>The Smart Backend Check:</strong> When you click, our system first checks its internal database. To save resources and load information instantly, we heavily rely on cached results.</li>
+                    <li><strong>The AI Call (When Needed):</strong> If our database doesn't have fresh data for that legend, the system makes a secure API call to an AI model with a carefully crafted prompt.</li>
+                    <li><strong>Learn and Store for Next Time:</strong> The new information we get back from the AI is immediately stored in our database. The next visitor will benefit from your curiosity.</li>
+                </ol>
+                
+                <p>This intelligent caching system makes the site fast and responsive, while the occasional AI calls ensure our legends' stories continue to evolve.</p>
+            </div>
+            
+            <div class="explanation-card">
+                <h3>Technical Details</h3>
+                <p>This website is a full-stack application designed to demonstrate efficient data handling and API integration. Here's the technical flow behind the "AI Update" feature.</p>
+                
+                <div class="highlight">
+                    <h4>Architecture & Data Flow</h4>
+                </div>
+                
+                <ol>
+                    <li><strong>User Interaction:</strong> A user clicks the "AI Update" button on a legend's profile page.</li>
+                    <li><strong>Backend Logic & Caching Layer:</strong>
+                        <ul>
+                            <li>The server first checks the application database for a valid, recently cached AI response.</li>
+                            <li><strong>If a valid cache exists:</strong> The data is retrieved from the database and served to the user almost instantly.</li>
+                            <li><strong>If the cache is stale/missing:</strong> The process proceeds to the API call.</li>
+                        </ul>
+                    </li>
+                    <li><strong>External API Integration:</strong> The server constructs a prompt and makes a secure API call to a Large Language Model (e.g., OpenAI's GPT).</li>
+                    <li><strong>Data Persistence:</strong> The response from the AI API is parsed and then stored in the database with a new timestamp.</li>
+                    <li><strong>Response to User:</strong> The newly fetched data is then displayed on the front end.</li>
+                </ol>
+                
+                <p>This model ensures 99% of user requests are served from the local database, making the site incredibly fast and cost-effective, while still providing dynamic, AI-powered content.</p>
+            </div>
+        </div>
+    </main>
         
     <site-footer></site-footer>
+    
+    <script src="js/loadAiData.js"></script>
 </body>
-  <script src="js/loadAiData.js"></script>
 </html>

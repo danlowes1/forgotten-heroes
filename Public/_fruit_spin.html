@@ -1,0 +1,32 @@
+// Example fruit list (you'd normally fetch this from your backend API)
+const fruits = ["🍒", "🍋", "🍇", "🍉", "🍊", "🍓"];
+
+document.getElementById("spinBtn").addEventListener("click", () => {
+  spinReel("reel1");
+  spinReel("reel2");
+  spinReel("reel3");
+
+  // Fetch random result from your database (needs backend route)
+  fetch("/random-fruit")
+    .then(res => res.json())
+    .then(data => {
+      console.log("Database result:", data);
+      // You could replace one of the reels with database result:
+      document.getElementById("reel1").textContent = data.symbol;
+    })
+    .catch(err => console.error(err));
+});
+
+function spinReel(id) {
+  const reel = document.getElementById(id);
+  
+  // temporary spin animation
+  reel.style.transform = "rotate(720deg)";
+
+  setTimeout(() => {
+    // Pick a random fruit locally
+    const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+    reel.textContent = randomFruit;
+    reel.style.transform = "rotate(0deg)";
+  }, 1000); // match transition duration
+}

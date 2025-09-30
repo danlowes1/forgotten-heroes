@@ -1,0 +1,92 @@
+<!-- AI Results Section -->
+<div class="ai-results-container">
+  <div class="ai-results-header">
+    <p class="ai-intro-text">These are the latest finds from the AI...</p>
+    <button class="find-out-more-btn" id="findOutMoreBtn" aria-expanded="false">
+      <span class="btn-text">Find out more</span>
+      <span class="btn-icon" aria-hidden="true">▼</span>
+    </button>
+  </div>
+
+  <div class="ai-explanation" id="aiExplanation" hidden>
+    <h3>How This Works</h3>
+    <p>
+      This website uses <strong>Gemini 2.5 Flash AI</strong> to discover the latest information about <span class="hero-name-placeholder">${heroName}</span>. 
+      Think of it as having a research assistant that can instantly search through vast amounts of recent information 
+      to find interesting facts that might have been buried or forgotten.
+    </p>
+    <p>
+      When you click the "AI Update" button, the AI scans news articles, interviews, recent publications, and other 
+      sources to uncover lesser-known details about this person's life, career, or current activities. It's like 
+      asking a knowledgeable friend "What's something fascinating about this person that most people don't know?" 
+      and getting an answer in seconds.
+    </p>
+    <p>
+      <strong>New to AI?</strong> This is a perfect example of how artificial intelligence can make everyday tasks easier. 
+      Instead of spending hours searching through multiple websites, the AI does the heavy lifting for you, pulling 
+      together intriguing facts you might never have found on your own.
+    </p>
+    <p class="ai-disclaimer">
+      <em>For those familiar with AI:</em> Yes, this is a straightforward prompt-based query—nothing groundbreaking. 
+      But that's exactly the point! This feature is designed to show newcomers how AI can be genuinely useful 
+      for simple, practical tasks like this. Sometimes the best demonstration of technology is just showing it 
+      working in a real, everyday context.
+    </p>
+  </div>
+
+  <!-- Your AI results table would go here -->
+  <div class="ai-results-table">
+    <!-- Table content -->
+  </div>
+</div>
+
+<style>
+.ai-results-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ai-intro-text {
+  margin: 0;
+}
+
+.find-out-more-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+</style>
+
+<script>
+// Toggle the "Find out more" section
+document.getElementById('findOutMoreBtn').addEventListener('click', function() {
+  const explanation = document.getElementById('aiExplanation');
+  const btn = this;
+  const icon = btn.querySelector('.btn-icon');
+  const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+  
+  if (isExpanded) {
+    explanation.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    icon.textContent = '▼';
+    btn.querySelector('.btn-text').textContent = 'Find out more';
+  } else {
+    explanation.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    icon.textContent = '▲';
+    btn.querySelector('.btn-text').textContent = 'Show less';
+  }
+});
+
+// Replace ${heroName} placeholder with actual hero name when page loads
+// You would call this function with the actual hero name
+function updateHeroName(heroName) {
+  const placeholders = document.querySelectorAll('.hero-name-placeholder');
+  placeholders.forEach(placeholder => {
+    placeholder.textContent = heroName;
+  });
+}
+
+// Example: updateHeroName('Buster Keaton');
+</script>

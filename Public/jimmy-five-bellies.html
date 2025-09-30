@@ -4,312 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jimmy 'Five Bellies' Gardner </title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Georgia', 'Times New Roman', serif;
-        }
-        
-        body {
-            background: #f6f6f6;
-            color: #333;
-            line-height: 1.6;
-            padding: 0;
-            font-size: 18px;
-        }
-        
-        .broadsheet-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-        }
-        
-        .broadsheet-header {
-            background: #2c2c2c;
-            color: white;
-            padding: 20px 40px;
-            border-bottom: 2px solid #9e0e12;
-        }
-        
-        .broadsheet-title {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 4rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
-            letter-spacing: 2px;
-            padding: 20px 0;
-            border-bottom: 1px solid #555;
-        }
-        
-        .broadsheet-date {
-            text-align: center;
-            margin: 10px 0;
-            color: #ccc;
-            font-size: 1.1rem;
-        }
-        
-        .broadsheet-tagline {
-            text-align: center;
-            font-size: 1.2rem;
-            margin: 10px 0;
-            color: #9e0e12;
-            font-style: italic;
-        }
-        
-        .main-headline {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 2.8rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 30px 40px 20px;
-            padding: 20px 0;
-            color: #2c2c2c;
-            border-bottom: 2px solid #9e0e12;
-            border-top: 2px solid #9e0e12;
-            line-height: 1.2;
-        }
-        
-        .sub-headline {
-            font-size: 1.8rem;
-            font-weight: normal;
-            text-align: center;
-            margin: 0 40px 30px;
-            color: #555;
-            font-style: italic;
-            line-height: 1.3;
-        }
-        
-        .content {
-            padding: 20px 40px;
-            /* display: flex;
-            flex-wrap: wrap; */
-            gap: 40px;
-        }
-        
-        /* .main-content {
-            flex: 1;
-            min-width: 300px;
-        }
-         */
-        /* .sidebar {
-            flex: 1;
-            min-width: 250px;
-            background: #f9f9f9;
-            padding: 25px;
-            border-left: 1px solid #ddd;
-        }
-        
-        .sidebar-title {
-            font-size: 1.5rem;
-            color: #9e0e12;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #9e0e12;
-            text-align: center;
-        } */
-        
-        .article {
-            margin-bottom: 35px;
-        }
-        
-        .article p {
-            margin-bottom: 20px;
-            text-align: justify;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #9e0e12;
-        }
-        
-        .drop-cap::first-letter {
-            font-size: 4.5rem;
-            float: left;
-            line-height: 0.8;
-            margin-right: 10px;
-            color: #9e0e12;
-            font-weight: bold;
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        .image-placeholder {
-            background: linear-gradient(to bottom, #eaeaea, #d5d5d5);
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 30px 0;
-            border: 1px solid #ddd;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .image-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 12px;
-            font-style: italic;
-            text-align: center;
-            font-size: 1rem;
-        }
-        
-        .highlight {
-            color: #9e0e12;
-            font-weight: bold;
-        }
-        
-        .facts-box {
-            background: #f0f0f0;
-            color: #333;
-            border: 1px solid #ccc;
-            border-left: 4px solid #9e0e12;
-            padding: 25px;
-            margin: 30px 0;
-        }
-        
-        .facts-title {
-            font-size: 1.5rem;
-            color: #9e0e12;
-            margin-bottom: 15px;
-            text-align: center;
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        .fact {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        .fact:before {
-            content: "•";
-            color: #9e0e12;
-            font-weight: bold;
-            position: absolute;
-            left: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .ai-button {
-            display: block;
-            width: 100%;
-            background: #2c2c2c;
-            color: white;
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: normal;
-            border: none;
-            border-bottom: 3px solid #9e0e12;
-            cursor: pointer;
-            margin: 25px 0;
-            text-transform: none;
-            transition: all 0.3s ease;
-            font-family: 'Georgia', serif;
-        }
-        
-        .ai-button:hover {
-            background: #9e0e12;
-        }
-        
-        .ai-result {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-left: 4px solid #9e0e12;
-            padding: 20px;
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .ai-result-title {
-            font-size: 1.4rem;
-            color: #9e0e12;
-            margin-bottom: 15px;
-            text-align: center;
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        .broadsheet-footer {
-            background: #2c2c2c;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-            border-top: 2px solid #9e0e12;
-        }
-        
-        .footer-text {
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-        
-        @media (max-width: 900px) {
-            .content {
-                flex-direction: column;
-            }
-            
-            .broadsheet-title {
-                font-size: 3rem;
-            }
-            
-            .main-headline {
-                font-size: 2.2rem;
-                margin: 20px;
-            }
-            
-            .sub-headline {
-                font-size: 1.5rem;
-                margin: 0 20px 20px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-        }
-        
-        .pull-quote {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 1.8rem;
-            font-style: italic;
-            color: #555;
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            border-top: 1px solid #9e0e12;
-            border-bottom: 1px solid #9e0e12;
-            background: #f9f9f9;
-            line-height: 1.4;
-        }
-        
-        .byline {
-            text-align: right;
-            font-style: italic;
-            color: #666;
-            margin-bottom: 25px;
-            padding-right: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .section-title {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #9e0e12;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-    </style>
+ 
     <link rel="stylesheet" href="assets/css/style.css">
   <script src="js/components.js" defer></script>
 </head>
@@ -321,68 +16,14 @@ https://en.everybodywiki.com/Jimmy_%22Five_Bellies%22_Gardner
 
 -->
   <nav-bar></nav-bar>
-    <div class="broadsheet-container">
-        <!-- <header class="broadsheet-header">
-            <div class="section-title">Saturday Edition</div>
-            <h1 class="broadsheet-title">The Chronicle</h1>
-            <div class="broadsheet-date">Saturday, 28 October 2023</div>
-            <div class="broadsheet-tagline">Established 1785 | Journal of Record</div>
-        </header>
-         -->
-        <!-- <div class="main-headline">
-            Jimmy 'Five Bellies' Gardner: Beyond the Tabloid Caricature
-        </div>
-        
+    <!-- <div class="broadsheet-container"> -->
+
+    <!-- <div class="broadsheet-container"> -->
+
+
         <div class="sub-headline">
-            The complex relationship between celebrity and personal identity in modern Britain
-        </div>
-        
-        <div class="content">
-            <div class="main-content">
-                <div class="byline">By Dan Lowes, Senior Features Correspondent</div>
-                
-                <div class="article">
-                    <p class="drop-cap">THE peculiar phenomenon of British tabloid culture has created many curious characters over the decades, but few as memorably nicknamed as James Gardner, known universally as "Jimmy Five Bellies." The moniker, bestowed upon him by a Sun newspaper journalist in the 1990s, reduced a complex individual to a physical characteristic, creating a public persona that would follow him for decades.</p>
-                    
-
-                     -->
-
-
-
-
-
-
-
-
-
-    <div class="broadsheet-container">
-
-
-
-
-        <!-- <div class="main-headline">
-            Jimmy 'Five Bellies' Gardner: Beyond the Tabloid Caricature
-        </div>
-        
-       
-            The complex relationship between celebrity and personal identity in modern Britain
-        </div>
-        
-        <div class="content">
-            <div class="main-content">
-                <div class="byline">By Dan Lowes, Senior Features Correspondent</div>
-                
-                <div class="article">
-
-    <div class="main-headline"></div>
-      <h1>Jimmy "Five Bellies" Gardner - The Footballer's Famous Friend</h1>
-      <p>Popular Culture 1990s-2000s</p>
-    </div> -->
-
-
-           <div class="sub-headline">
-                James "Five Bellies" Gardner (born 1966) is a British personality who earned media attention in the 1990s and early 2000s as the best friend of England international footballer Paul Gascoigne.
-           </div>  
+            James "Five Bellies" Gardner (born 1966) is a British personality who earned media attention in the 1990s and early 2000s as the best friend of England international footballer Paul Gascoigne.
+        </div>  
 
         <p>A 2004 article in The Guardian described Gardner as "the only person in Britain famous for being a footballer's mate." He gained notoriety for accompanying Gascoigne during his drinking escapades, with stories of their alleged antics frequently appearing in newspapers.</p>
         <div class="image-placeholder">
@@ -408,8 +49,19 @@ https://en.everybodywiki.com/Jimmy_%22Five_Bellies%22_Gardner
         <p>Gardner is from Dunston, Gateshead. He left school with no qualifications and worked as a tarmac layer. He had two sons as of 1998.</p>
         
         <p>In February 1997, Gardner was fined £500 for assault, having punched a Celtic fan in the face at a pub in Houston, Renfrewshire, after an Old Firm game; the sheriff said that there was a sectarian element to the attack.</p>
-        
+       
+          <div class="image-placeholder">
+            <img src="images/jimmy-five-bellies.jpg" >
+            <div class="image-caption">
+                (a terrible mock-up of) The famous headline from The Sun
+            </div>
+        </div>      
+
         <p>In August 1999, Gardner was sentenced to six months in prison for drunkenly threatening a group of youths with an unloaded air pistol when they taunted him; radio presenter Chris Evans gave him a character reference in court. Less than 72 hours into his sentence, he was released on bail from HM Prison Durham. Gardner described his imprisonment as a trigger event for him to give up drinking.</p>
+
+
+
+
 
         <h1>Later Life and Transformation</h1>
         <p>Gardner was declared bankrupt in 2005. In a remarkable transformation, by 2010 he had shed his weight from a peak of 21 stone (290 lb; 130 kg) to 13 stone (180 lb; 83 kg) due to a drastic change in lifestyle. That year he took part in the Great North Run for the Bobby Robson Foundation, wearing shirt number 555 as a reference to his nickname.</p>

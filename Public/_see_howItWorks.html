@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works | Forgotten Legends</title>
+    <!-- <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #1a2a6c;
+        }
+        
+        /* Main content */
+        main {
+            padding: 3rem 0;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: #1a2a6c;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+            max-width: 800px;
+        }
+        
+        /* Option cards */
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .option-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #1a2a6c;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option-title {
+            font-size: 1.5rem;
+            color: #1a2a6c;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-title i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .option-content {
+            color: #555;
+        }
+        
+        .option-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .highlight {
+            background-color: #e9f2ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .highlight-title {
+            font-weight: 600;
+            color: #1a2a6c;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-list {
+            list-style-type: none;
+            counter-reset: step-counter;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 3rem;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            background-color: #1a2a6c;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .tech-term {
+            background-color: #f1f3f4;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a2a6c;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin: 0 1rem;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style> -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Forgotten Legends</div>
+            <div class="tagline">Preserving the stories of unsung heroes</div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <div class="site-name">Forgotten Legends</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Legends</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#" class="active">How It Works</a></li>
+                <li><a href="#">Contribute</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <h1 class="page-title">See How It Works</h1>
+        <p class="intro-text">
+            Forgotten Legends is built with a smart, efficient backend that ensures you get the most interesting information as quickly as possible. 
+            Here's a peek behind the curtain at how our "AI Update" feature brings these stories to life.
+        </p>
+        
+        <div class="options-container">
+            <!-- Option 1: User-Focused & Magical -->
+            <div class="option-card">
+                <h2 class="option-title">
+                    <i>✨</i> User-Focused & Magical
+                </h2>
+                <div class="option-content">
+                    <p>Forgotten Legends is more than a static archive; it's a living project that gets smarter over time. Here's how we bring these stories to life and keep them updated.</p>
+                    
+                    <div class="highlight">
+                        <div class="highlight-title">The Living Legend System</div>
+                        <p>At the bottom of every legend's page, you'll find our <strong>"AI Update"</strong> button. This is your portal to discovering even more about these incredible figures.</p>
+                    </div>
+                    
+                    <ul class="step-list">
+                        <li><strong>Your Curiosity Fuels Discovery:</strong> When you click the button, our system searches for fresh insights, little-known facts, or recent information about the legend.</li>
+                        <li><strong>Instant Knowledge, Powered by AI:</strong> Behind the scenes, your click sends a secure request to a powerful AI language model. We ask it to dig deeper than a standard search.</li>
+                        <li><strong>A Collective Memory:</strong> To make the system fast and efficient for everyone, we store every new discovery in our database. Most of the time, you're seeing a cached result.</li>
+                        <li><strong>The Thrill of the New:</strong> The first time a legend's page is visited, your click is guaranteed to generate a brand-new, unique piece of information.</li>
+                    </ul>
+                    
+                    <p>In short, you're not just reading history—you're helping us build a richer, more detailed one.</p>
+                </div>
+            </div>
+            
+            <!-- Option 2: Balanced & Clear -->
+            <div class="option-card">
+                <h2 class="option-title">
+                    <i>⚖️</i> Balanced & Clear
+                </h2>
+                <div class="option-content">
+                    <p>This version strikes a good balance, explaining the process clearly without being intimidating. It's perfect for a portfolio as it demonstrates you can articulate technical concepts.</p>
+                    
+                    <div class="highlight">
+                        <div class="highlight-title">The "AI Update" Button: Your Request for Deeper Knowledge</div>
+                    </div>
+                    
+                    <ul class="step-list">
+                        <li><strong>You Spark the Search:</strong> On every legend's page, the <strong>"AI Update"</strong> button is your way of asking for more—more obscure facts, recent news, or hidden details.</li>
+                        <li><strong>The Smart Backend Check:</strong> When you click, our system first checks its internal database. To save resources and load information instantly, we heavily rely on cached results.</li>
+                        <li><strong>The AI Call (When Needed):</strong> If our database doesn't have fresh data for that legend, the system makes a secure API call to an AI model with a carefully crafted prompt.</li>
+                        <li><strong>Learn and Store for Next Time:</strong> The new information we get back from the AI is immediately stored in our database. The next visitor will benefit from your curiosity.</li>
+                    </ul>
+                    
+                    <p>This intelligent caching system makes the site fast and responsive, while the occasional AI calls ensure our legends' stories continue to evolve.</p>
+                </div>
+            </div>
+            
+            <!-- Option 3: Slightly More Technical -->
+            <div class="option-card">
+                <h2 class="option-title">
+                    <i>🔧</i> Technical Details
+                </h2>
+                <div class="option-content">
+                    <p>This website is a full-stack application designed to demonstrate efficient data handling and API integration. Here's the technical flow behind the "AI Update" feature.</p>
+                    
+                    <div class="highlight">
+                        <div class="highlight-title">Architecture & Data Flow</div>
+                    </div>
+                    
+                    <ul class="step-list">
+                        <li><strong>User Interaction:</strong> A user clicks the <span class="tech-term">"AI Update"</span> button on a legend's profile page.</li>
+                        <li><strong>Backend Logic & Caching Layer:</strong>
+                            <ul style="list-style-type: disc; margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>The server first checks the application database for a valid, recently cached AI response.</li>
+                                <li><strong>If a valid cache exists:</strong> The data is retrieved from the database and served to the user almost instantly.</li>
+                                <li><strong>If the cache is stale/missing:</strong> The process proceeds to the API call.</li>
+                            </ul>
+                        </li>
+                        <li><strong>External API Integration:</strong> The server constructs a prompt and makes a secure API call to a Large Language Model <span class="tech-term">(e.g., OpenAI's GPT)</span>.</li>
+                        <li><strong>Data Persistence:</strong> The response from the AI API is parsed and then stored in the database with a new timestamp.</li>
+                        <li><strong>Response to User:</strong> The newly fetched data is then displayed on the front end.</li>
+                    </ul>
+                    
+                    <p>This model ensures 99% of user requests are served from the local database, making the site incredibly fast and cost-effective, while still providing dynamic, AI-powered content.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Forgotten Legends</h3>
+                    <p>Preserving the stories of remarkable individuals who made significant contributions to our world but never received the recognition they deserved.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Browse Legends</a></li>
+                        <li><a href="#">Submit a Legend</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Forgotten Legends. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

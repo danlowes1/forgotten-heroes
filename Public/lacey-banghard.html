@@ -3,169 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lacey Banghard - The Daily Mirror</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background: #f0f0f0;
-            color: #333;
-            line-height: 1.4;
-            padding: 0;
-            font-size: 18px;
-        }
-        
-        .newspaper-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid #ccc;
-        }
-        
-        .newspaper-header {
-            background: linear-gradient(to bottom, #cc0000, #990000);
-            color: white;
-            padding: 15px 20px;
-            border-bottom: 4px solid #ffcc00;
-        }
-        
-        .newspaper-title {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 3.5rem;
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin: 0;
-            letter-spacing: 1px;
-        }
-        
-        .newspaper-date {
-            text-align: center;
-            font-style: italic;
-            margin: 5px 0;
-            color: #ffcc00;
-            font-weight: bold;
-        }
-        
-        .newspaper-tagline {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #ffcc00;
-            font-weight: bold;
-        }
-        
-        .main-headline {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 2.8rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            padding: 10px;
-            background: #ffcc00;
-            color: #990000;
-            text-transform: uppercase;
-            border: 2px solid #990000;
-        }
-        
-        .sub-headline {
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 0 0 20px 0;
-            color: #990000;
-            font-style: italic;
-            padding: 0 10px;
-        }
-        
-        .content {
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .main-content {
-            flex: 2;
-            min-width: 300px;
-        }
-        
-        .sidebar {
-            flex: 1;
-            min-width: 250px;
-            background: #f9f9f9;
-            padding: 15px;
-            border: 2px solid #cc0000;
-            border-radius: 5px;
-        }
-        
-        .sidebar-title {
-            font-size: 1.5rem;
-            color: #cc0000;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid #ffcc00;
-            text-align: center;
-        }
-        
-        .article {
-            margin-bottom: 25px;
-        }
-        
-        .article p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .drop-cap::first-letter {
-            font-size: 3.5rem;
-            float: left;
-            line-height: 1;
-            margin-right: 8px;
-            color: #cc0000;
-            font-weight: bold;
-        }
-        
-        .image-placeholder {
-            background: linear-gradient(to bottom, #eee, #ccc);
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            border: 3px solid #ffcc00;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .image-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 8px;
-            font-style: italic;
-            text-align: center;
-        }
-        
-        .highlight {
-            color: #cc0000;
-            font-weight: bold;
-        }
-        
+    <title>Jimmy 'Five Bellies' Gardner </title>
+ <style>
+       
         .facts-box {
-            background: #ffe6e6;
-            border: 2px solid #cc0000;
+            background: transparent;
+            border: 2px solid #e0d2d2;
             border-radius: 5px;
             padding: 15px;
             margin: 20px 0;
@@ -173,7 +16,7 @@
         
         .facts-title {
             font-size: 1.4rem;
-            color: #cc0000;
+            color: #e4dbdb;
             margin-bottom: 10px;
             text-align: center;
         }
@@ -186,185 +29,47 @@
         
         .fact:before {
             content: "•";
-            color: #cc0000;
+            color: #cebcbc;
             font-weight: bold;
             position: absolute;
             left: 0;
         }
         
-        /* .ai-button {
-            display: block;
-            width: 100%;
-            background: linear-gradient(to bottom, #cc0000, #990000);
-            color: white;
-            padding: 12px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 20px 0;
-            text-transform: uppercase;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .ai-button:hover {
-            background: linear-gradient(to bottom, #990000, #cc0000);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-        } */
-        
-.ai-button {
-  background: var(--accent-color);
-  color: var(--nav-color);
-  border: 2px solid var(--text-color);
-  padding: 5px 10px; 
-  border-radius: 40px;
-  font-size: 0.8em; 
-  font-weight: bold;
-  font-family: sans-serif;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-shadow: 0px 1px 1px white;
-  text-decoration: none;
-  /* animation: pulse 2s infinite;  */
-  box-shadow: 0 0 5px 2px #00aaff;
-  animation: glow 2s infinite alternate;
-}
-
-.ai-button:hover {
-  background: #b9972e;
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px var(--accent-color);
-}
-
-.spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: var(--nav-color);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  vertical-align: middle;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}  to { transform: rotate(360deg); }
-
-
-
-
-@keyframes glow {
-  0% { box-shadow: 0 0 5px 2px #00aaff; }
-  70% { box-shadow: 0 0 20px 5px #00aaff, 0 0 30px 10px #00aaff; }
-  100% { box-shadow: 0 0 5px 2px #00aaff; }
-}
-
-
-
-
-        .ai-result {
-            background: #f9f9f9;
-            border: 2px dashed #cc0000;
-            border-radius: 5px;
-            padding: 15px;
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .ai-result-title {
-            font-size: 1.4rem;
-            color: #cc0000;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .newspaper-footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-            border-top: 4px solid #ffcc00;
-        }
-        
-        .footer-text {
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-        
-        @media (max-width: 768px) {
-            .content {
-                flex-direction: column;
-            }
-            
-            .newspaper-title {
-                font-size: 2.5rem;
-            }
-            
-            .main-headline {
-                font-size: 2rem;
-            }
-            
-            .sub-headline {
-                font-size: 1.5rem;
-            }
-        }
-        
-        .pull-quote {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 1.6rem;
-            font-style: italic;
-            color: #990000;
-            text-align: center;
-            margin: 25px 0;
-            padding: 20px;
-            border-top: 2px solid #ffcc00;
-            border-bottom: 2px solid #ffcc00;
-            background: #fff9e6;
-        }
-        
-        .byline {
-            text-align: right;
-            font-style: italic;
-            color: #666;
-            margin-bottom: 15px;
-            padding-right: 10px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
-        }
-    </style>
+  </style>  
+    <link rel="stylesheet" href="assets/css/style.css">
+  <script src="js/components.js" defer></script>
 </head>
 <body>
+      <nav-bar></nav-bar>
+
     <div class="newspaper-container">
-        <header class="newspaper-header">
-            <h1 class="newspaper-title">The Daily Mirror</h1>
-            <div class="newspaper-date">Saturday, October 28, 2023</div>
-            <div class="newspaper-tagline">BRITAIN'S MOST POPULAR NEWSPAPER</div>
-        </header>
         
-        <div class="main-headline">
-            LACEY BANGHARD: NOT A LEGEND, BUT FAMOUS FOR HAVING BEEN CHRISTENED
-        </div>
-        
-        <div class="sub-headline">
-            Exclusive: The Page 3 stunner who became a household name
-        </div>
+        <h1>
+            Lacey Banghard: Not a LEGEND, but famous for having been christened
+        </h1>
+        <h2>
+            The Page 3 stunner who became a household name
+        </h2>
         
         <div class="content">
             <div class="main-content">
-                <div class="byline">By SIMON WILSON, Showbiz Editor</div>
-                
+               
                 <div class="article">
                     <p class="drop-cap">LACEY Banghard might not be a legend in the traditional sense, but she's certainly earned her place in British tabloid history. With a name that sounds like it was created by a cheeky headline writer, this Page 3 beauty became a household name in the early 2010s, capturing the attention of Sun readers and reality TV fans alike.</p>
                     
                     <div class="image-placeholder">
-                        <div style="font-size: 4rem;">📸</div>
+                        <img  src="images/lacey_banghard_page3.jpg" >
                         <div class="image-caption">Lacey Banghard in her Page 3 days - a vision that delighted Sun readers</div>
                     </div>
                     
+        <!-- <div class="image-placeholder">
+            <img src="images/jimmy_gardner_released.jpg" >
+            <div class="image-caption">
+                James Gardner in his hometown of Newcastle upon Tyne (File photograph)
+            </div>
+        </div> -->
+
+
                     <p>The stunning model first graced the pages of Britain's most popular newspaper as a <span class="highlight">Page 3 girl</span>, following in the footsteps of icons like Samantha Fox and Linda Lusardi. But it was her unforgettable name that really got people talking.</p>
                     
                     <div class="pull-quote">
@@ -394,60 +99,15 @@
                 </div>
             </div>
             
-            <div class="sidebar">
-                <div class="sidebar-title">MORE TOP STORIES</div>
-                
-                <div class="fact">Corrie star in secret affair with co-star</div>
-                <div class="fact">PM's Brexit plan in chaos after rebellion</div>
-                <div class="fact">Weather: Heatwave to continue for week</div>
-                <div class="fact">Footballer's wife in shoplifting scandal</div>
-                <div class="fact">X Factor star dropped from label</div>
-                
-                <div class="sidebar-title">AI FEATURE</div>
 
                  <!-- <a href="#" id="aiButton" class="ai-button">AI Update</a> -->
 
 
-                <p>Discover the latest updates with our new AI technology</p>
-                <button class="ai-button" onclick="revealAIInfo()">Get AI Updates on Lacey</button>
-                
-                <div id="aiResult" class="ai-result">
-                    <div class="ai-result-title">LATEST LACEY UPDATES</div>
-                    <div class="fact">Recently appeared on a podcast about 2010s tabloid culture</div>
-                    <div class="fact">Planning to launch a fitness app in 2024</div>
-                    <div class="fact">Rumored to be writing a memoir about her experiences</div>
-                    <div class="fact">Seen at London Fashion Week last month</div>
-                    <div class="fact">Maintains an active Instagram following</div>
-                </div>
-                
-                <div class="sidebar-title">PAGE 3 HISTORY</div>
-                <div class="fact">The Sun's Page 3 launched in 1970</div>
-                <div class="fact">First model was Stephanie Rahn</div>
-                <div class="fact">Discontinued in January 2015</div>
-                <div class="fact">Samantha Fox was most famous model</div>
-                <div class="fact">Feature sparked decades of controversy</div>
-            </div>
-        </div>
-        
-        <div class="newspaper-footer">
-            <p class="footer-text">© 2023 The Daily Mirror. All rights reserved.</p>
-        </div>
-    </div>
 
-    <script>
-        function revealAIInfo() {
-            const aiResult = document.getElementById('aiResult');
-            const button = document.querySelector('.ai-button');
-            
-            // Show AI result
-            aiResult.style.display = 'block';
-            
-            // Change button text
-            button.textContent = "Updates Delivered!";
-            
-            // Scroll to results
-            aiResult.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+        </div>
+        <ai-bar></ai-bar>
+
+      <site-footer></site-footer>
 </body>
+  <script src="js/loadAiData.js"></script>
 </html>
