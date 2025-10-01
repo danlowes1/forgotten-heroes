@@ -82,64 +82,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
-            try {
+            // try {
                 apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-id/${heroId}`;
                 let response = await fetch(apiUrl);
-                if (!response.ok) throw new Error(`Server failed to process request. Status: ${response.status}`);
-                let data = await response.json();
+                if (!response.ok)  throw new Error(`Server failed to process request. Status: ${response.status}`);
+                const data = await response.json();
 
-                // If no data found, ask Gemini to generate
+                // Log the response from your Gemini backend
                 if (data.length === 0) {
                     const responseAi = await fetch(geminiApiUrl);
                     if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
+                    
                     const dataAi = await responseAi.json();
 
+                    // console.log("Response from your Gemini backend:", dataAi.text);
+
                     if (dataAi && dataAi.length > 0) {
-                        try {
-                            // Save all AI facts in parallel
-                            await Promise.all(
-                                dataAi.map(async (item, index) => {
-                                    console.log(`Fact #${index + 1}: ${item}`);
-                                    const saveUrl = 'http://localhost:3001/api/hero_ai_finds';
-                                    const payload = { content: item, hero_id: heroId };
+                        dataAi.forEach(async (item, index) => {
+                            console.log(`Fact #${index + 1}: ${item}`);
+                            // Post AI facts to
+                            const apiUrl = 'http://localhost:3001/api/hero_ai_finds'; // Adjust port/path if necessary
+                            const factContent = item; // Ensure factContent is defined
+                            const payload = { content: factContent, hero_id: heroId };
 
-                                    const saveResponse = await fetch(saveUrl, {
-                                        method: 'POST',
-                                        headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify(payload)
-                                    });
+                            try {
+                                // const response = await fetch(apiUrl, {
+                                response = await fetch(apiUrl, {
+                                    method: 'POST', // Critical: Use the POST method
+                                    headers: {
+                                        // Critical: Tell the server the body content type
+                                        'Content-Type': 'application/json'
+                                    },
+                                    // Critical: Convert the JavaScript object into a JSON string
+                                    body: JSON.stringify(payload)
+                                });
 
-                                    if (!saveResponse.ok) {
-                                        const errorDetails = await saveResponse.json();
-                                        throw new Error(
-                                            `Failed to save fact. Status: ${saveResponse.status}. Message: ${errorDetails.message || 'Unknown server error'}`
-                                        );
-                                    }
+                                // 3. Robust Error Handling for HTTP Status
+                                if (!response.ok) {
+                                    // Attempt to read the error message from the backend (if provided)
+                                    const errorDetails = await response.json();
+                                    throw new Error(`Failed to save fact. Status: ${response.status}. Message: ${errorDetails.message || 'Unknown server error'}`);
+                                }
 
-                                    const savedRecord = await saveResponse.json();
-                                    console.log("Fact saved successfully. Record ID:", savedRecord.id);
-                                })
-                            );
+                                const savedRecord = await response.json();
+                                console.log("Fact saved successfully. Record ID:", savedRecord.id);
+                                
+                                // return savedRecord;
+                            } catch (error) {
+                                console.error("Database save failed:", error.message);
+                            }
+                        });
 
-                            // ✅ Only runs once ALL saves are complete
-                            console.log("Re-fetching data after AI generation...");
-                            response = await fetch(apiUrl);
-                            if (!response.ok) throw new Error(`Server failed to process request. Status: ${response.status}`);
-                            data = await response.json();
-                            console.log("Data after AI generation length:", data.length);
-
-                        } catch (error) {
-                            console.error("Error while saving AI facts:", error.message);
-                        }
                     } else {
                         console.log("AI query was successful, but no facts were returned.");
                     }
+                    // response = await fetch(apiUrl);
+                    // if (!response.ok)  throw new Error(`Server failed to process request. Status: ${response.status}`);
+                    // const data = await response.json();
+                    console.log("Re-fetching data after AI generation...");
+                    apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-id/${heroId}`;
+                    response = await fetch(apiUrl);
+                    if (!response.ok)  throw new Error(`Server failed to process request. Status: ${response.status}`);
+                    const data = await response.json();
+                    console.log("Data after AI generation length:", data.length);
+
                 }
-                console.log("WHY DOESN'T THIS RUN?!");
-                console.log("Final data to render:", data.length , Array.isArray(data));
-                // Render results
+
                 if (Array.isArray(data) && data.length > 0) {
-                    messageContainer.innerHTML = '';
+                    messageContainer.innerHTML = ''; //= aiResultsHeader();//'<p>These are the latest finds fro the AI....</p>'; 
+                    
                     data.slice(0, 10).forEach(item => {
                         const contentCard = document.createElement('div');
                         contentCard.className = 'content-card';
@@ -149,16 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     messageContainer.innerHTML = '<p class="text-gray-500">No content found for this hero.</p>';
                 }
-            } catch (error) {
-                console.error("Error during AI fetch/save flow:", error.message);
-            } finally {
-                // Reset button back to original state
-                aiButton.innerHTML = originalText;
-                aiButton.disabled = false;
-                aiButton.style.pointerEvents = 'auto';
-            }
-        }, 3000);
 
+            // Reset button back to original state
+            aiButton.innerHTML = originalText;
+            aiButton.disabled = false;
+            aiButton.style.pointerEvents = 'auto';
+        }, 3000); // 3 second pause
     });
 });
 

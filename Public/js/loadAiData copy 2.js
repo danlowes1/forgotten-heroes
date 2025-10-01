@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const paragraphs = Array.from(document.querySelectorAll("p")).map(p => p.textContent.trim());
     console.log("Paragraphs:", paragraphs);
 
-
-
     // const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
 
     const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
@@ -46,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show loading message after 1 second
         setTimeout(() => {
-            messageContainer.innerHTML = '<p class="text-gray-500">Loading AI finds...</p>';
-        }, 1000);
+            messageContainer.innerHTML = '<p class="text-gray-500">AI searching for updates...</p>';
+        }, 500);
 
         const dataHero = { hero_name: heroName };
         try {
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(async () => {
             // try {
                 apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-id/${heroId}`;
-                const response = await fetch(apiUrl);
+                let response = await fetch(apiUrl);
                 if (!response.ok)  throw new Error(`Server failed to process request. Status: ${response.status}`);
                 const data = await response.json();
 
@@ -95,20 +93,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     const responseAi = await fetch(geminiApiUrl);
                     if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
                     
-                    
                     const dataAi = await responseAi.json();
 
                     // console.log("Response from your Gemini backend:", dataAi.text);
 
                     if (dataAi && dataAi.length > 0) {
-                        dataAi.forEach((item, index) => {
+                        dataAi.forEach(async (item, index) => {
                             console.log(`Fact #${index + 1}: ${item}`);
                             // Post AI facts to
                             const apiUrl = 'http://localhost:3001/api/hero_ai_finds'; // Adjust port/path if necessary
+                            const factContent = item; // Ensure factContent is defined
                             const payload = { content: factContent, hero_id: heroId };
 
                             try {
-                                const response = await fetch(apiUrl, {
+                                // const response = await fetch(apiUrl, {
+                                response = await fetch(apiUrl, {
                                     method: 'POST', // Critical: Use the POST method
                                     headers: {
                                         // Critical: Tell the server the body content type
@@ -128,23 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const savedRecord = await response.json();
                                 console.log("Fact saved successfully. Record ID:", savedRecord.id);
                                 
-                                return savedRecord;
+                                // return savedRecord;
                             } catch (error) {
                                 console.error("Database save failed:", error.message);
                             }
-
-
-                            
                         });
 
                     } else {
                         console.log("AI query was successful, but no facts were returned.");
                     }
+                    // response = await fetch(apiUrl);
+                    // if (!response.ok)  throw new Error(`Server failed to process request. Status: ${response.status}`);
+                    // const data = await response.json();
+                    console.log("Re-fetching data after AI generation...");
+                    apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-id/${heroId}`;
+                    response = await fetch(apiUrl);
+                    if (!response.ok)  throw new Error(`Server failed to process request. Status: ${response.status}`);
+                    const data = await response.json();
+                    console.log("Data after AI generation length:", data.length);
+
                 }
 
                 if (Array.isArray(data) && data.length > 0) {
-                    messageContainer.innerHTML = ''; // Clear loading message
-                    data.slice(0, 5).forEach(item => {
+                    messageContainer.innerHTML = ''; //= aiResultsHeader();//'<p>These are the latest finds fro the AI....</p>'; 
+                    
+                    data.slice(0, 10).forEach(item => {
                         const contentCard = document.createElement('div');
                         contentCard.className = 'content-card';
                         contentCard.textContent = item.content;
@@ -153,10 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     messageContainer.innerHTML = '<p class="text-gray-500">No content found for this hero.</p>';
                 }
-            // } catch (error) {
-            //     console.error('Fetch error:', error);
-            //     messageContainer.innerHTML = `<p class="text-red-500">Failed to load content. Error: ${error.message}</p>`;
-            // }
 
             // Reset button back to original state
             aiButton.innerHTML = originalText;
@@ -165,6 +168,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000); // 3 second pause
     });
 });
+
+
+document.getElementById('findOutMoreBtn').addEventListener('click', function() {
+  const explanation = document.getElementById('aiExplanation');
+  const btn = this;
+  const icon = btn.querySelector('.btn-icon');
+  const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+  
+  console.log("Button clicked. Current expanded state:");
+
+  if (isExpanded) {
+    explanation.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    icon.textContent = '▼';
+    btn.querySelector('.btn-text').textContent = 'Find out more';
+  } else {
+    explanation.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    icon.textContent = '▲';
+    btn.querySelector('.btn-text').textContent = 'Show less';
+  }
+});
+
+
+function aiResultsHeader () {
+
+    return `<div class="ai-results-container">
+        <div class="ai-results-header">
+            <p class="ai-intro-text">Thesse are the latest finds from the AI...</p>
+            <button class="find-out-more-btn" id="findOutMoreBtn" aria-expanded="false">
+            <span class="btn-text">Find out more</span>
+            <span class="btn-icon" aria-hidden="true">▼</span>
+            </button>
+        </div>
+
+        <div class="ai-explanation" id="aiExplanation" hidden>
+            <h3>How This Works</h3>
+            <p>
+            This website uses <strong>Gemini 2.5 Flash AI</strong> to discover the latest information about <span class="hero-name-placeholder">${heroName}</span>. 
+            Think of it as having a research assistant that can instantly search through vast amounts of recent information 
+            to find interesting facts that might have been buried or forgotten.
+            </p>
+            <p>
+            When you click the "AI Update" button, the AI scans news articles, interviews, recent publications, and other 
+            sources to uncover lesser-known details about this person's life, career, or current activities. It's like 
+            asking a knowledgeable friend "What's something fascinating about this person that most people don't know?" 
+            and getting an answer in seconds.
+            </p>
+            <p>
+            <strong>New to AI?</strong> This is a perfect example of how artificial intelligence can make everyday tasks easier. 
+            Instead of spending hours searching through multiple websites, the AI does the heavy lifting for you, pulling 
+            together intriguing facts you might never have found on your own.
+            </p>
+            <p class="ai-disclaimer">
+            <em>For those familiar with AI:</em> Yes, this is a straightforward prompt-based query—nothing groundbreaking. 
+            But that's exactly the point! This feature is designed to show newcomers how AI can be genuinely useful 
+            for simple, practical tasks like this. Sometimes the best demonstration of technology is just showing it 
+            working in a real, everyday context.
+            </p>
+        </div>`
+
+}
 
 // Not in use
 async function  getFactsAboutPerson(name) {
@@ -192,8 +257,7 @@ async function  getFactsAboutPerson(name) {
 
 
 
-
-
+// 
 
 // // import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 

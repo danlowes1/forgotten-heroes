@@ -1,8 +1,14 @@
-/// components.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Forgotten Legends</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="js/components.js" defer></script>
+</head>
+<body>
 
-class NavBar extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
       <script>
         const burger = document.querySelector(".burger");
         const menu = document.querySelector(".menu-bar");
@@ -42,33 +48,30 @@ class NavBar extends HTMLElement {
           </ul>
         </nav>
       </header>
-    `;
-  }
-}
-customElements.define("nav-bar", NavBar);
+<main class="page-content">
+  <h1>About Forgotten Legends</h1>
+  
+    <h2>Our Mission</h2>
+      <p>Forgotten Legends exists to shine a light on the remarkable individuals who made significant contributions to our world but never received the recognition they deserved. In an era of fleeting fame and algorithm-driven attention, we preserve the stories that truly matter.</p>
+      <p>We believe history isn't just made by the names in textbooks - it's shaped by countless unsung heroes whose legacies deserve to be remembered.</p>
+  
+    <h2>How This Project Began</h2>
+    <p>The idea for Forgotten Legends came when our founder tried to research Jimmy Glass - the goalkeeper whose last-minute goal saved Carlisle United in 1999. Despite this being one of football's most dramatic moments, comprehensive information was surprisingly hard to find.</p>
+    <p>This discovery led to a simple question: <strong>"How many other extraordinary stories are being lost to time?"</strong> Our website is the answer to that question.</p>
 
-class AiBar extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-  <div class="main-container">
-    <div class="header-ai-bar">
-        <a href="#" id="aiButton" class="ai-button">AI Update</a>
-    </div>
-    <div id="messageContainer" class="message-container">
-    </div>
-    <div id="contentContainer" class="content-wrapper">
-    </div>
-  </div>
- `;
-  }
-}
+    <h2>Our Core Values</h2>
+    <h3>Historical Accuracy</h3>
+    <p>We rigorously fact-check every story, working with historians and primary sources.</p>
 
-customElements.define("ai-bar", AiBar);
+    <h3>Inclusive Perspective</h3>
+    <p>We actively seek stories across gender, racial, and cultural lines that traditional history overlooked.</p>
 
+    <h3>Educational Focus</h3>
+    <p>Our content is designed to inspire learning and curiosity about the past.</p>
 
-class SiteFooter extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
+    <h2>Join Us in Remembering the Forgotten</h2>
+
+</main>
       <footer class="site-footer">
         <div class="footer-left">
 
@@ -90,21 +93,5 @@ class SiteFooter extends HTMLElement {
           </form>
         </div>
       </footer>
-    `;
-  }
-}
-
-customElements.define("site-footer", SiteFooter);
-
-document.addEventListener("DOMContentLoaded", function () {
-  const currentPath = window.location.pathname.split("/").pop(); // e.g. "sport.html"
-  const menuLinks = document.querySelectorAll(".menu-bar ul li a");
-
-  menuLinks.forEach(link => {
-    const linkPath = link.getAttribute("href");
-    if (linkPath === currentPath) {
-      link.classList.add("active");
-    }
-  });
-});
-
+</body>
+</html>

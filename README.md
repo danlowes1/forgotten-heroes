@@ -7,6 +7,7 @@ A website that is marketeted to the non-tech savvy generation who missed out on 
 
 Linda Calvey the black widow
 Duncan Edwards (Football, '50s)
+Martin Peters
 
 forgotten idols:
  Claude Vorilhon (Raël) and the Eloheim
