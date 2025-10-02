@@ -9,6 +9,8 @@ Linda Calvey the black widow
 Duncan Edwards (Football, '50s)
 Martin Peters
 
+Umberto Motto Turino FC air crash
+
 forgotten idols:
  Claude Vorilhon (Raël) and the Eloheim
 https://en.wikipedia.org/wiki/Ra%C3%ABl

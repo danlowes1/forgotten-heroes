@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 })
                             );
 
-                            // ✅ Only runs once ALL saves are complete
+                            // Only runs once ALL saves are complete (becuase of await Promise.all)
                             console.log("Re-fetching data after AI generation...");
                             response = await fetch(apiUrl);
                             if (!response.ok) throw new Error(`Server failed to process request. Status: ${response.status}`);
@@ -135,8 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log("AI query was successful, but no facts were returned.");
                     }
                 }
-                console.log("WHY DOESN'T THIS RUN?!");
-                console.log("Final data to render:", data.length , Array.isArray(data));
+
                 // Render results
                 if (Array.isArray(data) && data.length > 0) {
                     messageContainer.innerHTML = '';

@@ -3,51 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Forgotten Legends</title>
+  <title>Forgotten Heroes</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="js/components.js" defer></script>
+  <!-- <script src="js/components.js" defer></script> -->
 </head>
 <body>
+  <header class="site-header">
+    <div class="header-left">
+      <div class="site-title">
+        <img src="images/Forgotten-heroes_ Honouring the Unsung.png" 
+             alt="Forgotten Heroes" 
+             class="site-logo">
+      </div>
+      <a href="ai-info.html" class="ai-button">AI Powered</a>
+    </div>
 
-      <script>
-        const burger = document.querySelector(".burger");
-        const menu = document.querySelector(".menu-bar");
+    <button class="burger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-        burger.addEventListener("click", () => {
-          burger.classList.toggle("active");
-          menu.classList.toggle("active");
-        });
-      </script>
+    <nav class="menu-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sport.html">Sport</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="film.html">Film</a></li>
+        <li><a href="popculture.html">Popular Culture</a></li>
+        <li><a href="conflict.html">Conflict</a></li>
+        <li><a href="robots.html">Bots</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-          
-      <header class="site-header">
-        <div class="header-left">
-          <div class="site-title">
-            <img src="images/Forgotten-heroes_ Honouring the Unsung.png" alt="Forgotten Heroes" class="site-logo">
-          </div>
-          <a href="ai-info.html" class="ai-button">AI Powered</a>
-        </div>
 
-        <!-- Burger Button -->
-        <button class="burger" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <nav class="menu-bar">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="sport.html">Sport</a></li>
-            <li><a href="music.html">Music</a></li>
-            <li><a href="film.html">Film</a></li>
-            <li><a href="popculture.html">Popular Culture</a></li>
-            <li><a href="conflict.html">Conflict</a></li>
-            <li><a href="robots.html">Bots</a></li>
-            <li><a href="about.html">About</a></li>
-          </ul>
-        </nav>
-      </header>
 <main class="page-content">
   <h1>About Forgotten Legends</h1>
   
@@ -93,5 +84,6 @@
           </form>
         </div>
       </footer>
+  <script src="js/navbarBurger.js"></script>
 </body>
 </html>
