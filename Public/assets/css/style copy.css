@@ -1,25 +1,18 @@
-/* style.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-  --background-color: #0C1B36 ;        /* deep navy, steam-era vibe  old: #0a1d3b 0C1B36 */
-  --nav-color: #0f274f;              /* slightly lighter navy */
-  --nav-hover: #183569;              /* hover navy-blue */
-  --text-color: #f2e6c9;             /* parchment cream */
-  --accent-color: #d4af37;           /* antique gold */
+  --background-color: #0C1B36;
+  --nav-color: #0f274f;
+  --nav-hover: #183569;
+  --text-color: #f2e6c9;
+  --accent-color: #d4af37;
   --footer-color: #0f274f;
-
-  /* --font-main: 'Goudy Old Style', 'Times New Roman', serif;
-  --font-heading: 'Cinzel Decorative', 'Georgia', serif; */
-  /* --font-main: 'Lato', sans-serif; */
-  /* --font-heading: 'Lora', serif;  Roboto*/ 
   --font-main: 'Lato', sans-serif;
   --font-heading: 'Lato', sans-serif;
 }
 
-
-
-/* Global Styles */
+/* Global */
 body {
   font-family: var(--font-main);
   background-color: var(--background-color);
@@ -31,18 +24,14 @@ body {
   background-size: 20px 20px;
 }
 
-
-/* ensure header and footer have no margin */
 .site-header,
 .site-footer {
   margin: 0;
   font-family: var(--font-main);
 }
 
-.page-content { margin: 50px; } 
-.page-content > * { margin-top: 0; margin-bottom: 20px; } 
-
-
+.page-content { margin: 50px; }
+.page-content > * { margin-top: 0; margin-bottom: 20px; }
 
 h1, h3 {
   font-family: var(--font-heading);
@@ -52,69 +41,58 @@ h1, h3 {
   margin-bottom: 5px;
 }
 
- h2  {
-  margin-top: 1px; 
+h2 {
+  margin-top: 1px;
   font-family: var(--font-heading);
   color: var(--accent-color);
   text-shadow: 1px 1px 2px black;
   letter-spacing: 1px;
 }
 
-
-.site-logo {
-  height: 100px;
-  margin-right: 15px;
-  border-radius: 8px;    
-}
 /* Navbar */
 .site-header {
   font-family: var(--font-main);
-  margin: 0px;
   background: var(--nav-color);
   border-bottom: 3px solid var(--accent-color);
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* Changed from center to flex-end */
+  align-items: flex-end;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1000;
 }
 
-.site-title h1 {
-  margin: 0;
-  font-size: 2em;
-  font-family: var(--font-heading);
-  color: var(--accent-color);
+.site-logo {
+  height: 80px;
+  margin-right: 15px;
+  border-radius: 8px;
 }
 
-.site-title p {
-  margin: 0;
-  font-style: italic;
-  font-size: 1em;
-  opacity: 0.85;
+.header-left {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
 }
-
 
 .menu-bar {
-  /* background: var(--nav-color); */
   font-family: var(--font-main);
   background: transparent;
   display: flex;
-  align-items: flex-end; /* This will lower the button and the list */
+  align-items: flex-end;
   gap: 20px;
+  transition: max-height 0.4s ease;
 }
 
 .menu-bar ul {
-  font-family: var(--font-main);
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 0px;
 }
 
 .menu-bar ul li a {
-  font-family: var(--font-main);
-  color:  var(--text-color);
+  color: var(--text-color);
   text-decoration: none;
   font-size: 0.9em;
   font-weight: bold;
@@ -124,43 +102,15 @@ h1, h3 {
 }
 
 .menu-bar ul li a:hover {
-  font-family: var(--font-main);
   border-bottom: 2px solid var(--accent-color);
   color: var(--accent-color);
 }
 
-.header-left {
-  display: flex;
-  align-items: flex-end; /* push items to the bottom */
-  gap: 15px;
-}
-
-
 .menu-bar ul li a.active {
-  /* border-bottom: 2px solid var(--accent-color); */
   color: var(--accent-color);
 }
 
-
-.demo-section {
-  background: transparent;
-  padding: 40px;
-  border-radius: 10px;
-  text-align: center;
-  margin-top: 40px;
-  border: 2px dashed var(--accent-color);
-}
-
-.demo-section h2 {
-  color: var(--accent-color);
-  margin-bottom: 20px;
-  font: var(--font-heading);
-  font-size: 2rem;
-  
-}
-
-
-/* Burger button hidden by default (desktop) */
+/* Burger */
 .burger {
   display: none;
   flex-direction: column;
@@ -170,6 +120,7 @@ h1, h3 {
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 1100; /* ✅ stays clickable above menu */
 }
 
 .burger span {
@@ -181,71 +132,22 @@ h1, h3 {
   transition: all 0.3s ease;
 }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .burger {
-    display: flex;
-  }
-
-  .menu-bar {
-    position: absolute;
-    top: 75px; /* below header */
-    right: 0;
-    background: var(--nav-color);
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    flex-direction: column;
-  }
-
-  .menu-bar ul {
-    flex-direction: column;
-  }
-
-  .menu-bar ul li a {
-    display: block;
-    padding: 15px;
-    border-bottom: 1px solid var(--accent-color);
-  }
-
-  /* When active (open) */
-  .menu-bar.active {
-    max-height: 500px; /* large enough to fit all links */
-  }
-
-  /* Animate burger into "X" */
-  .burger.active span:nth-child(1) {
-    transform: rotate(45deg) translateY(7px);
-  }
-  .burger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .burger.active span:nth-child(3) {
-    transform: rotate(-45deg) translateY(-7px);
-  }
-}
-
-.image-caption {
-    font-style: italic;
-}
-
+/* AI Button */
 .ai-button {
   background: var(--accent-color);
   color: var(--nav-color);
   border: 2px solid var(--text-color);
-  padding: 5px 10px; 
+  padding: 5px 10px;
   border-radius: 40px;
-  font-size: 0.8em; 
+  font-size: 0.8em;
   font-weight: bold;
-  font-family: sans-serif;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-shadow: 0px 1px 1px white;
   text-decoration: none;
-  /* animation: pulse 2s infinite;  */
+  text-shadow: 0px 1px 1px white;
   box-shadow: 0 0 5px 2px #00aaff;
   animation: glow 2s infinite alternate;
+  position: relative;
+  z-index: 1100; /* ✅ keeps above menu */
 }
 
 .ai-button:hover {
@@ -253,42 +155,6 @@ h1, h3 {
   transform: translateY(-2px);
   box-shadow: 0 0 10px var(--accent-color);
 }
-.ai-button-locked {
-  background: var(--accent-color);
-  color: var(--nav-color);
-  border: 2px solid var(--text-color);
-  padding: 5px 10px; 
-  border-radius: 40px;
-  font-size: 0.8em; 
-  font-weight: bold;
-  font-family: sans-serif;
-  cursor: default;
-  transition: all 0.3s ease;
-  text-shadow: 0px 1px 1px white;
-  text-decoration: none;
-  /* animation: pulse 2s infinite;  */
-  box-shadow: 0 0 5px 2px #00aaff;
-  /* animation: glow 2s infinite alternate; */
-}
-
-
-.spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: var(--nav-color);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  vertical-align: middle;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}  to { transform: rotate(360deg); }
-
-
-
 
 @keyframes glow {
   0% { box-shadow: 0 0 5px 2px #00aaff; }
@@ -296,10 +162,87 @@ h1, h3 {
   100% { box-shadow: 0 0 5px 2px #00aaff; }
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .burger { display: flex; }
+
+  .menu-bar {
+    position: absolute;
+    top: 75px;
+    right: 0;
+    background: var(--nav-color);
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  .menu-bar ul { flex-direction: column; }
+
+  .menu-bar ul li a {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid var(--accent-color);
+  }
+
+  .menu-bar.active { max-height: 500px; }
+
+  /* Burger → X */
+  .burger.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(7px);
+  }
+  .burger.active span:nth-child(2) { opacity: 0; }
+  .burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-7px);
+  }
+
+  /* ✅ AI button mobile tweaks */
+  .ai-button {
+    width: auto;
+    margin: 10px auto;
+    display: block;
+    font-size: 0.85em;
+    line-height: 1.2;
+    padding: 6px 14px;
+  }
+
+  /* ✅ When burger menu is open, move AI button up */
+  .menu-bar.active + .ai-button {
+    margin-top: -40px;
+  }
+}
+
+/* ✅ Extra: very narrow screens, shorten AI text */
+@media (max-width: 400px) and (orientation: portrait) {
+  .ai-button {
+    font-size: 0.9em;
+    padding: 6px 12px;
+  }
+  .ai-button::after {
+    content: "AI"; /* replace text */
+  }
+  .ai-button { font-size: 1em; }
+  .ai-button { visibility: hidden; }
+  .ai-button::after {
+    visibility: visible;
+    display: inline;
+    content: "AI";
+  }
+}
+
+/* ... rest of your styles remain unchanged ... */
+
+
+/* CHATGPT END PASTE
+ */
+/* Remaining selectors only in File 1 - Kept in order */
+.image-caption {
+  font-style: italic;
+}
 
 ai-bar {
-  display: block; /* Ensures the element is not inline, allowing margins to be applied correctly */
-  margin-left: 20px !important; /* Forces the margin to be applied, overriding any other conflicting styles */
+  display: block;
+  margin-left: 20px !important;
   margin-bottom: 40px
 }
 
@@ -311,13 +254,11 @@ ai-bar {
 
 .content-card {
   background-color: #f0f0f0;
-  /* border-radius: 8px; */
   padding: 15px;
   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #0a0a08;
   color: #183569;
-  /* animation: glowResults 2s infinite alternate; */
 }
 
 @keyframes glowResults {
@@ -379,14 +320,13 @@ ai-bar {
 
 .hero-box {
   flex: 1 1 400px;
-  position: relative; /* so the flag can be positioned absolutely */position: relative; /* so the flag can be positioned absolutely */
+  position: relative;
   background: var(--nav-color);
   border: 2px solid var(--accent-color);
   border-radius: 12px;
   box-shadow: 1px 2px 10px rgba(0,0,0,0.6);
   padding: 20px;
 }
-
 
 .flag {
   position: absolute;
@@ -400,9 +340,8 @@ ai-bar {
   transform: rotate(45deg);
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-  pointer-events: none; /* make it "decorative" only */
+  pointer-events: none;
 }
-
 
 .hero-box h1 {
   font-size: 1.6em;
@@ -430,9 +369,6 @@ ai-bar {
   flex: 1;
 }
 
-/* .hero-content a {
-  display: block;
-} */
 .hero-content img {
   width: 200px;
   height: 200px;
@@ -499,66 +435,66 @@ ai-bar {
 }
 
 .quote {
-    position: relative;
-    background: linear-gradient(135deg, #e9e6ec 0%, #e2e5eb 100%);
-    color: rgb(14, 1, 1);
-    padding: 30px 40px;
-    border-radius: 10px;
-    margin: 30px 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    font-size: 1.25rem;
-    font-style: italic;
-    line-height: 1.7;
-    border-left: 5px solid #ffdd40;
+  position: relative;
+  background: linear-gradient(135deg, #e9e6ec 0%, #e2e5eb 100%);
+  color: rgb(14, 1, 1);
+  padding: 30px 40px;
+  border-radius: 10px;
+  margin: 30px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.7;
+  border-left: 5px solid #ffdd40;
 }
 
 .quote::before {
-    content: "“";
-    position: absolute;
-    top: 15px;
-    left: 0px;
-    font-size: 5rem;
-    font-family: Georgia, serif;
-    color: rgba(20, 2, 2, 0.2);
-    line-height: 1;
+  content: "“";
+  position: absolute;
+  top: 15px;
+  left: 0px;
+  font-size: 5rem;
+  font-family: Georgia, serif;
+  color: rgba(20, 2, 2, 0.2);
+  line-height: 1;
 }
 
 .quote::after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    right: 15px;
-    font-size: 5rem;
-    font-family: Georgia, serif;
-    color: rgba(255, 255, 255, 0.2);
-    line-height: 1;
-    transform: rotate(180deg);
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: 15px;
+  font-size: 5rem;
+  font-family: Georgia, serif;
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 1;
+  transform: rotate(180deg);
 }
 
 .quote .author {
-    display: block;
-    text-align: right;
-    font-style: normal;
-    font-weight: 600;
-    margin-top: 15px;
-    color: #ffdd40;
-    font-size: 1.1rem;
+  display: block;
+  text-align: right;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 15px;
+  color: #ffdd40;
+  font-size: 1.1rem;
 }
 
-        .ai-tag {
-            display: inline-block;
-            background: linear-gradient(to right, #e94560, #ff7b9c);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 1.1rem;
-            margin-left: 10px;
-            vertical-align: super;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+.ai-tag {
+  display: inline-block;
+  background: linear-gradient(to right, #e94560, #ff7b9c);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  margin-left: 10px;
+  vertical-align: super;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

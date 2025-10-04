@@ -6,16 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fullPath = window.location.pathname;
     const fileNameWithExtension = fullPath.substring(fullPath.lastIndexOf('/') + 1);
-    
-    let heroName = fileNameWithExtension.split('.')[0].replace(/-/g, ' ');
+    const elmHeader1 = document.querySelector("h1");
+
+    const fileName = fileNameWithExtension.split('.')[0].replace(/-/g, ' ');
   
-    heroName = heroName.toLowerCase().replace(/\b\w/g, (char) => {
+    const heroName = fileName.toLowerCase().replace(/\b\w/g, (char) => {
         return char.toUpperCase();
     });
 
-
     // 1. Get the contents of the first <h1>
-    const firstHeader = document.querySelector("h1")?.textContent.trim();
+    // const firstHeader = document.querySelector("h1")?.textContent.trim();
+    const firstHeader =  elmHeader1?.textContent.trim();
+    
     console.log("First header:", firstHeader);
 
     // 2. Get all <p> contents as plain text
@@ -27,10 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
 
     aiButton.addEventListener('click', async function(event) {
-        event.preventDefault();
-
         let heroId , heroRecord, apiUrl;
         const originalText = aiButton.textContent;
+
+        event.preventDefault();
+
+        if (fileName === 'ai-info') {
+            // We are not on a hero page we are on the ai-info.html page
+            const res = await fetch("/api/heroes/random");
+            const data = await res.json();
+            const randomHeroName = data.RandomHeroName;
+            elmHeader1.textContent = randomHeroName;
+            console.log("Random hero name:", randomHeroName);   
+        }
 
         contentContainer.innerHTML = '';
         messageContainer.innerHTML = '';

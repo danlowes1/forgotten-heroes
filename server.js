@@ -71,57 +71,6 @@ app.get("/generate-ai-content", async (req, res) => {
 });
 
 
-
-
-
-
-// app.get("/generate-ai-content", async (req, res) => {
-//     // Read the heroName from the query string (e.g., ?heroName=...)
-//     const heroName = req.query.heroName;
-
-//     if (!heroName) {
-//         return res.status(400).json({ error: "Missing 'heroName' query parameter." });
-//     }
-
-//     // Build the prompt dynamically using the heroName variable
-//     const prompt = `
-//         Give me up to 5 interesting facts about ${heroName}.
-//         Each fact should be 2-3 sentences long.
-//     `; // Added JSON request to get a structured array (Best Practice from previous step)
-
-//     // Optional: Define the JSON Schema here (Highly recommended for structured output)
-//     const FactsArraySchema = {
-//         type: "array",
-//         items: {
-//             type: "object",
-//             properties: {
-//                 fact: { type: "string", description: "A single interesting fact, 2-3 sentences long." }
-//             }
-//         }
-//     };
-
-//     try {
-//         const response = await ai.models.generateContent({
-//             model: "gemini-2.5-flash",
-//             contents: prompt,
-//             config: {
-//                 responseMimeType: "application/json",
-//                 responseSchema: FactsArraySchema,
-//             },
-//         });
-//         console.log("1. Response text:", response.text);
-
-//         res.json({ text: response.text });
-
-
-//     } catch (error) {
-//         console.error(`Error generating content for ${heroName}:`, error);
-//         res.status(500).json({ error: "Failed to generate AI content" });
-//     }
-// });
-
-
-
 const PORT = process.env.PORT || 3001;
 
 // has the --rebuild parameter been passed as a command line param?

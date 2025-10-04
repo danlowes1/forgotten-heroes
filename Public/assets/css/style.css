@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
@@ -6,12 +7,12 @@
   --nav-hover: #183569;
   --text-color: #f2e6c9;
   --accent-color: #d4af37;
-  --footer-color: #0f274f; /* Kept from File 1 (only in File 1) */
+  --footer-color: #0f274f;
   --font-main: 'Lato', sans-serif;
   --font-heading: 'Lato', sans-serif;
 }
 
-/* Global Styles (Only in File 1 - Kept) */
+/* Global */
 body {
   font-family: var(--font-main);
   background-color: var(--background-color);
@@ -23,14 +24,17 @@ body {
   background-size: 20px 20px;
 }
 
-/* ensure header and footer have no margin (Only in File 1 - Kept) */
 .site-header,
 .site-footer {
   margin: 0;
   font-family: var(--font-main);
 }
 
-.page-content { margin: 50px; }
+.page-content { 
+  margin: 20px auto;
+  max-width: 1200px;
+  padding: 0 15px;
+}
 .page-content > * { margin-top: 0; margin-bottom: 20px; }
 
 h1, h3 {
@@ -49,58 +53,48 @@ h2 {
   letter-spacing: 1px;
 }
 
-/* Navbar (File 2 Overrides File 1) */
+/* Navbar */
 .site-header {
-  /* File 2 settings used (missing 'margin: 0px;' from File 1) */
   font-family: var(--font-main);
   background: var(--nav-color);
   border-bottom: 3px solid var(--accent-color);
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;   /* changed from flex-end */
   flex-wrap: wrap;
-}
-
-.site-title h1 { /* Only in File 1 - Kept */
-  margin: 0;
-  font-size: 2em;
-  font-family: var(--font-heading);
-  color: var(--accent-color);
-}
-
-.site-title p { /* Only in File 1 - Kept */
-  margin: 0;
-  font-style: italic;
-  font-size: 1em;
-  opacity: 0.85;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1000;
 }
 
 .site-logo {
-  /* File 2 setting used (height changed from 100px to 80px) */
-  height: 80px;
-  margin-right: 15px;
+  max-height: 80px;
+  height: auto;
+  max-width: 200px;
+  width: auto;
   border-radius: 8px;
+  object-fit: contain;
 }
 
 .header-left {
-  /* File 2 settings used (identical to File 1, but explicitly using File 2) */
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 15px;
+  flex-shrink: 0;
 }
 
 .menu-bar {
-  /* File 2 settings used (identical to File 1, but explicitly using File 2) */
   font-family: var(--font-main);
   background: transparent;
   display: flex;
   align-items: flex-end;
   gap: 20px;
+  transition: max-height 0.4s ease;
 }
 
 .menu-bar ul {
-  /* File 2 settings used (missing 'font-family: var(--font-main);' from File 1) */
   display: flex;
   list-style: none;
   padding: 0;
@@ -108,7 +102,6 @@ h2 {
 }
 
 .menu-bar ul li a {
-  /* File 2 settings used (missing 'font-family: var(--font-main);' from File 1) */
   color: var(--text-color);
   text-decoration: none;
   font-size: 0.9em;
@@ -119,17 +112,15 @@ h2 {
 }
 
 .menu-bar ul li a:hover {
-  /* File 2 settings used (missing 'font-family: var(--font-main);' from File 1) */
   border-bottom: 2px solid var(--accent-color);
   color: var(--accent-color);
 }
 
 .menu-bar ul li a.active {
-  /* File 2 settings used (missing comment and 'border-bottom' property from File 1) */
   color: var(--accent-color);
 }
 
-/* Demo Section (Only in File 1 - Kept) */
+/* Demo Section */
 .demo-section {
   background: transparent;
   padding: 40px;
@@ -146,9 +137,8 @@ h2 {
   font-size: 2rem;
 }
 
-/* Burger (File 2 Overrides File 1) */
+/* Burger */
 .burger {
-  /* File 2 settings used (identical to File 1, but explicitly using File 2) */
   display: none;
   flex-direction: column;
   justify-content: space-between;
@@ -157,10 +147,10 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 1100;
 }
 
 .burger span {
-  /* File 2 settings used (identical to File 1, but explicitly using File 2) */
   display: block;
   height: 3px;
   width: 100%;
@@ -169,80 +159,44 @@ h2 {
   transition: all 0.3s ease;
 }
 
-/* AI Button (File 2 Overrides File 1) */
+/* AI Button */
 .ai-button {
-  /* File 2 settings used (missing 'font-family: sans-serif;' from File 1) */
   background: var(--accent-color);
   color: var(--nav-color);
   border: 2px solid var(--text-color);
-  padding: 5px 10px;
+  padding: 6px 14px;
   border-radius: 40px;
-  font-size: 0.8em;
+  font-size: 0.85em;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
   text-shadow: 0px 1px 1px white;
   box-shadow: 0 0 5px 2px #00aaff;
   animation: glow 2s infinite alternate;
+  position: relative;
+  z-index: 1100;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .ai-button:hover {
-  /* File 2 settings used (identical to File 1, but explicitly using File 2) */
   background: #b9972e;
   transform: translateY(-2px);
   box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* .ai-button-locked (Only in File 1 - Kept) */
-.ai-button-locked {
-  background: var(--accent-color);
-  color: var(--nav-color);
-  border: 2px solid var(--text-color);
-  padding: 5px 10px;
-  border-radius: 40px;
-  font-size: 0.8em;
-  font-weight: bold;
-  font-family: sans-serif;
-  cursor: default;
-  transition: all 0.3s ease;
-  text-shadow: 0px 1px 1px white;
-  text-decoration: none;
-  box-shadow: 0 0 5px 2px #00aaff;
-}
-
-/* .spinner, @keyframes spin (Only in File 1 - Kept) */
-.spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: var(--nav-color);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  vertical-align: middle;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* @keyframes glow (File 2 Overrides File 1 - identical, but placed here according to file 2 position) */
 @keyframes glow {
   0% { box-shadow: 0 0 5px 2px #00aaff; }
   70% { box-shadow: 0 0 20px 5px #00aaff, 0 0 30px 10px #00aaff; }
   100% { box-shadow: 0 0 5px 2px #00aaff; }
 }
 
-
-/* Mobile Styles (File 2 Overrides File 1) */
+/* Mobile Styles */
 @media (max-width: 768px) {
-  .burger {
-    /* File 2 settings used (identical to File 1, but explicitly using File 2) */
-    display: flex;
-  }
+  .burger { display: flex; }
 
   .menu-bar {
-    /* File 2 settings used (identical to File 1, but explicitly using File 2) */
     position: absolute;
     top: 75px;
     right: 0;
@@ -250,51 +204,68 @@ h2 {
     width: 100%;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease;
     flex-direction: column;
+    transition: max-height 0.4s ease;
   }
 
-  .menu-bar ul {
-    /* File 2 settings used (identical to File 1, but explicitly using File 2) */
-    flex-direction: column;
-  }
+  .menu-bar ul { flex-direction: column; }
 
   .menu-bar ul li a {
-    /* File 2 settings used (identical to File 1, but explicitly using File 2) */
     display: block;
     padding: 15px;
     border-bottom: 1px solid var(--accent-color);
   }
 
-  .menu-bar.active {
-    /* File 2 settings used (identical to File 1, but explicitly using File 2) */
-    max-height: 500px;
-  }
+  .menu-bar.active { max-height: 500px; }
 
-  /* Burger transforms into "X" (File 2 Overrides File 1) */
+  /* Burger → X */
   .burger.active span:nth-child(1) {
     transform: rotate(45deg) translateY(7px);
   }
-  .burger.active span:nth-child(2) {
-    opacity: 0;
-  }
+  .burger.active span:nth-child(2) { opacity: 0; }
   .burger.active span:nth-child(3) {
     transform: rotate(-45deg) translateY(-7px);
   }
 
-  /* AI button moves above menu (Only in File 2 - Kept) */
+  /* AI button mobile tweaks */
   .ai-button {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    order: -1;
+    margin: 10px auto;
+    display: block;
+    width: auto;
+    font-size: 0.9em;
+    background: var(--accent-color) !important;
+    color: var(--nav-color) !important;
   }
 }
 
-/* Remaining selectors only in File 1 - Kept in order */
-.image-caption {
-  font-style: italic;
+/* Very small portrait phones */
+@media (max-width: 400px) and (orientation: portrait) {
+  .ai-button {
+    font-size: 1em;
+    padding: 6px 12px;
+    background: var(--accent-color) !important;
+    color: var(--nav-color) !important;
+  }
+  .ai-button::after {
+    content: "AI";
+  }
+  .ai-button {
+    visibility: hidden;
+  }
+  .ai-button::after {
+    visibility: visible;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 40px;
+    font-weight: bold;
+    background: var(--accent-color);
+    color: var(--nav-color);
+    box-shadow: 0 0 5px 2px #00aaff;
+  }
 }
+
+/* Remaining styles (your original content, boxes, footer, etc.) */
+.image-caption { font-style: italic; }
 
 ai-bar {
   display: block;
@@ -319,7 +290,7 @@ ai-bar {
 
 @keyframes glowResults {
   0% { box-shadow: 0 0 5px 2px #88ff00; }
-  70% { box-shadow: 0 0 20px 5px #00aaff, 0 0 30px 10px #00aaff; }
+  70% { box-shadow: 0 0 20px 5px  #00aaff, 0 0 30px 10px #00aaff; }
   100% { box-shadow: 0 0 5px 2px #00aaff; }
 }
 
@@ -421,9 +392,7 @@ ai-bar {
   gap: 15px;
 }
 
-.hero-content p {
-  flex: 1;
-}
+.hero-content p { flex: 1; }
 
 .hero-content img {
   width: 200px;
@@ -486,9 +455,7 @@ ai-bar {
   font-weight: bold;
 }
 
-.footer-right .btn:hover {
-  background: #b9972e;
-}
+.footer-right .btn:hover { background: #b9972e; }
 
 .quote {
   position: relative;
