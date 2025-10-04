@@ -101,6 +101,20 @@ app.post("/find-or-create", async (req, res) => {
   }
 });
 
+// Route to get a random hero name from stored procedure
+app.get("/random", async (req, res) => {
+  try {
+    const result = await callStoredProc("up_SEL_HeroRandomName");
+
+    // Sequelize returns an array of rows, so grab the first one
+    const randomHeroName = result[0]?.RandomHeroName;
+
+    res.json({ RandomHeroName: randomHeroName });
+  } catch (error) {
+    console.error("Error calling stored procedure:", error);
+    res.status(500).json({ error: "Failed to get random hero" });
+  }
+});
 
 
 // Route to update a hero

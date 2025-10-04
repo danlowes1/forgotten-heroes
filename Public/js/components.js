@@ -52,7 +52,7 @@ class AiBar extends HTMLElement {
     this.innerHTML = `
   <div class="main-container">
     <div class="header-ai-bar">
-        <a href="#" id="aiButton" class="ai-button">AI Update</a>
+        <a href="#" id="aiButton" class="ai-button-fetch">AI Update</a>
     </div>
     <div id="messageContainer" class="message-container">
     </div>
