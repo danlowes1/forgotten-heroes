@@ -75,6 +75,62 @@ h2 {
   gap: 15px;
 }
 
+/* --- Styles for the Larger Toggle Button --- */
+.big-ai-button {
+    /* Background and text color for a modern look */
+    background-color: #3b82f6; /* Blue-500 equivalent */
+    color: white;
+    
+    /* Make the button taller and wider (equivalent to py-3 and px-6) */
+    padding: 12px 24px; 
+    
+    /* Increase font size (equivalent to text-lg) */
+    font-size: 1.125rem; 
+    font-weight: bold;
+    border-radius: 0.25rem; /* Rounded corners */
+    border: none;
+    cursor: pointer;
+    
+    /* Add a smooth transition for the hover effect */
+    transition: background-color 0.15s ease-in-out;
+}
+
+/* Hover effect */
+.big-ai-button:hover {
+    background-color: #1d4ed8; /* Darker blue equivalent (Blue-700) */
+}
+
+/* --- Styles for the Larger Input Field --- */
+.big-ai-input {
+    /* Full width and default padding/border styles */
+    width: 100%;
+    
+    /* Make the input box taller (equivalent to py-3) */
+    padding: 12px 12px;
+    
+    /* Increase font size (equivalent to text-lg) */
+    font-size: 1.125rem; 
+    
+    /* Standard input styling */
+    border: 1px solid #d1d5db; /* Gray border */
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    
+    /* Ensure the text color is standard */
+    color: #374151; 
+    
+    /* Clean up default browser focus styles and replace with a custom outline */
+    outline: none;
+}
+
+.big-ai-input:focus {
+    border-color: #2563eb; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+
+
+
 .menu-bar {
   font-family: var(--font-main);
   background: transparent;

@@ -9,24 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const elmHeader1 = document.querySelector("h1");
 
     const fileName = fileNameWithExtension.split('.')[0].replace(/-/g, ' ');
-  
+    let aiResultsHeader = '';
+
     let heroName = fileName.toLowerCase().replace(/\b\w/g, (char) => {
         return char.toUpperCase();
     });
 
-    // 1. Get the contents of the first <h1>
-    // const firstHeader = document.querySelector("h1")?.textContent.trim();
     const firstHeader =  elmHeader1?.textContent.trim();
     
-    // console.log("First header:", firstHeader);
-
-    // 2. Get all <p> contents as plain text
     const paragraphs = Array.from(document.querySelectorAll("p")).map(p => p.textContent.trim());
     // console.log("Paragraphs:", paragraphs);
 
     // const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
 
-    const geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
+    let geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
 
     aiButton.addEventListener('click', async function(event) {
         let heroId , heroRecord, apiUrl;
@@ -34,22 +30,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         event.preventDefault();
 
+        contentContainer.innerHTML = '';
+        messageContainer.innerHTML = '';
+
         console.log("AI Button clicked fileName:", fileName);
         if (fileName === 'ai info') {
             // We are not on a hero page we are on the ai-info.html page
-            //const res = await fetch("/api/heroes/random");   
-            const res = await fetch("http://localhost:3001/api/heroes/random"); // This works but we should be using fetch("/api/heroes/random")
+            const customInputArea = document.getElementById('customInputArea');
+            const legendNameInput = document.getElementById('legendNameInput');
+            const customLegendName = legendNameInput.value.trim();
 
-            const data = await res.json();
-            const randomHeroName = data.RandomHeroName;
-            elmHeader1.textContent = randomHeroName;
-            // console.log("Random hero name:", randomHeroName); 
-            // console.log("Header1:", elmHeader1.textContent );  
-            heroName = randomHeroName;
+            if (customInputArea.style.display === 'block' && (customLegendName.length > 0)) {
+                heroName = customLegendName;
+
+                heroName = customLegendName.toLowerCase().replace(/\b\w/g, (char) => {
+                                return char.toUpperCase();
+                            });
+                console.log(`Firing Gemini API for custom legend: ${heroName}`);
+                geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
+                aiResultsHeader =
+                    `<div class="ai-header-style">These are the AI results for the legend by the name of ${heroName}...</div>`;
+
+            } else {
+                console.log("Firing default API for random hero.");
+                // Call stored proc to get a random hero name  
+                const res = await fetch("http://localhost:3001/api/heroes/random"); // This works but we should be using fetch("/api/heroes/random")
+                const data = await res.json();
+                const randomHeroName = data.RandomHeroName;
+                elmHeader1.textContent = randomHeroName;
+                heroName = randomHeroName;
+                aiResultsHeader =
+                    `<div class="ai-header-style">These are the AI results for randomly chosen legend ${heroName}...</div>`;
+            }
+
         }
-
-        contentContainer.innerHTML = '';
-        messageContainer.innerHTML = '';
 
         // Disable the button
         aiButton.disabled = true;
@@ -87,14 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Return the hero object from the response (it contains the ID!)
             heroRecord = result.hero;
-            heroId = heroRecord.id; // Extract the ID
+            heroId = heroRecord.id; // Extract the IDs
 
         } catch (error) {
             console.error("Error during find or create operation:", error.message);
             // return null; 
         }
 
-        console.log("Hero ID:", heroId);
+        // console.log("Hero ID:", heroId);
 
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
@@ -155,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Render results
                 if (Array.isArray(data) && data.length > 0) {
                     messageContainer.innerHTML = '';
+                    contentContainer.innerHTML = aiResultsHeader; // Add header if we are coming from ai-info.html page
                     data.slice(0, 10).forEach(item => {
                         const contentCard = document.createElement('div');
                         contentCard.className = 'content-card';
@@ -176,6 +191,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggleInputButton');
+    const inputArea = document.getElementById('customInputArea');
+
+    toggleButton.addEventListener('click', function() {
+        // Toggle the display style between 'none' (hidden) and 'block' (visible)
+        if (inputArea.style.display === 'none') {
+            inputArea.style.display = 'block';
+            toggleButton.textContent = 'Hide Input Field'; // Change button text when visible
+        } else {
+            inputArea.style.display = 'none';
+            toggleButton.textContent = 'Challenge the System!'; // Change button text when hidden
+        }
+    });
+});
+
+
 
 
 // document.getElementById('findOutMoreBtn').addEventListener('click', function() {
@@ -264,41 +298,3 @@ async function  getFactsAboutPerson(name) {
 }
 
 
-
-// 
-
-// // import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-
-// // const API_KEY = "YOUR_GEMINI_API_KEY"; // Keep this secret — don't expose in production
-// // const genAI = new GoogleGenerativeAI(API_KEY);
-
-// // async function getFactsAboutPerson(name) {
-// //   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-// //   const prompt = `
-// //     Give me up to 10 interesting facts about ${name}.
-// //     Each fact should be 2-3 sentences long.
-// //     Return them as a JSON array of objects with "factNumber" and "factText".
-// //   `;
-
-// //   const result = await model.generateContent(prompt);
-// //   const text = result.response.text();
-
-// //   // Try parsing JSON output
-// //   let facts;
-// //   try {
-// //     facts = JSON.parse(text);
-// //   } catch (e) {
-// //     console.error("Failed to parse JSON from Gemini:", text);
-// //     return;
-// //   }
-
-// //   console.log("Facts:", facts);
-
-// //   // Send to backend to store in DB
-// //   await fetch("/api/saveFacts", {
-// //     method: "POST",
-// //     headers: { "Content-Type": "application/json" },
-// //     body: JSON.stringify({ person: name, facts })
-// //   });
-// // }

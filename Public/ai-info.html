@@ -41,7 +41,8 @@
                 
                 <ul>
                     <li><strong>Your Curiosity Fuels Discovery:</strong> When you click the button, our system searches for fresh insights, little-known facts, or recent information about the legend.</li>
-                    <li><strong>Instant Knowledge, Powered by AI:</strong> Behind the scenes, your click sends a secure request to a powerful AI language model. We ask it to dig deeper than a standard search.</li>
+                    <!-- <li><strong>Instant Knowledge, Powered by AI:</strong> Behind the scenes, your click sends a secure request to a powerful AI language model. We ask it to dig deeper than a standard search.</li> -->
+                    <li><strong>Powered by Google's Gemini:</strong> Your click initiates a secure, real-time query to Google's Gemini model, a state-of-the-art AI. This isn't just a simple search; we leverage Gemini's advanced understanding to surface context and details that typical search engines might miss.</li>
                     <li><strong>A Collective Memory:</strong> To make the system fast and efficient for everyone, we store every new discovery in our database. Most of the time, you're seeing a cached result.</li>
                     <li><strong>The Thrill of the New:</strong> The first time a legend's page is visited, your click is guaranteed to generate a brand-new, unique piece of information.</li>
                 </ul>
@@ -49,7 +50,7 @@
                 <p>In short, you're not just reading history—you're helping us build a richer, more detailed one.</p>
             </div>
             
-            <div class="explanation-card">
+            <!-- <div class="explanation-card">
                 <h3>Balanced & Clear Explanation</h3>
                 <p>This version strikes a good balance, explaining the process clearly without being intimidating. It's perfect for a portfolio as it demonstrates you can articulate technical concepts.</p>
                 
@@ -66,8 +67,8 @@
                 
                 <p>This intelligent caching system makes the site fast and responsive, while the occasional AI calls ensure our legends' stories continue to evolve.</p>
             </div>
-            
-            <div class="explanation-card">
+             -->
+            <!-- <div class="explanation-card">
                 <h3>Technical Details</h3>
                 <p>This website is a full-stack application designed to demonstrate efficient data handling and API integration. Here's the technical flow behind the "AI Update" feature.</p>
                 
@@ -90,8 +91,43 @@
                 </ol>
                 
                 <p>This model ensures 99% of user requests are served from the local database, making the site incredibly fast and cost-effective, while still providing dynamic, AI-powered content.</p>
-            </div>
+            </div> -->
         </div>
+
+        <div class="demo-try-yourself">
+            <h2>The Real Test Drive</h2>
+
+            <p>
+                If you scrolled down this far, you probably noticed the **"AI Update"** button right at the top of the page. You may have even given it a click!
+            </p>
+            <p>
+                That button is performing the exact same magical task you see on every legend's dedicated page—it just randomly chose a hero we've already archived. But what fun is a fixed archive?
+            </p>
+
+            <p>
+                **Want to try the "AI Update" feature on someone we *haven't* yet covered?** You absolutely can! Give our system a new challenge by enabling the input field below:
+            </p>
+            
+            <div class="custom-legend-toggle my-4">
+                <button id="toggleInputButton" class="big-ai-button">
+                    Challenge the System!
+                </button>
+                
+                <div id="customInputArea" style="display: none;" class="mt-4 p-4 border border-gray-300 rounded bg-gray-50">
+                    <label for="legendNameInput" class="block text-gray-700 font-bold mb-2 text-base">
+                        Enter New Legend's Name:
+                    </label>
+                    <input type="text" id="legendNameInput" placeholder="e.g., Tesla, Yourself, That guy from accounts..."
+                        class="big-ai-input">
+                </div>
+            </div>
+    
+            <p>
+                Once you've entered a name above, go ahead and hit the **"AI Update"** button at the top of the page again to see what it can conjure up. Throw any name at it—literally any name. Try your own name if you like, but be warned: **I can't guarantee anything good will come up!** 😅
+            </p>
+
+        </div>
+
     </main>
         
     <site-footer></site-footer>

@@ -92,8 +92,6 @@ app.get("/", (req, res) => {
 // app.use(routes);
 app.use("/api", routes);
 
-
-
 // server.js (near the bottom, before app.listen)
 function listRoutes(app) {
   console.log("Registered routes:");

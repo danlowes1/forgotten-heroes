@@ -85,6 +85,59 @@ h2 {
   flex-shrink: 0;
 }
 
+/* --- Styles for the Button (Taller and Wider than default, but smaller than before) --- */
+.custom-legend-toggle .big-ai-button {
+    background-color: #3b82f6;
+    color: white;
+    
+    /* Slightly smaller padding than the last version (closer to py-2 px-4) */
+    padding: 10px 20px; 
+    
+    /* Smaller font size (closer to original) */
+    font-size: 1rem; 
+    font-weight: bold;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.custom-legend-toggle .big-ai-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* --- Styles for the Input Field (Constrained Width) --- */
+.custom-legend-toggle .big-ai-input {
+    /* **NEW: Set a maximum width** to prevent it from spanning the screen */
+    max-width: 450px; 
+    
+    /* Optional: Set a specific width if you want it fixed, but max-width is flexible */
+    width: 100%; 
+    
+    /* Padding is reduced (closer to py-2) */
+    padding: 10px 12px;
+    
+    /* Font size is reduced (closer to original) */
+    font-size: 1rem; 
+    
+    /* Retaining essential styling */
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    color: #374151;
+    outline: none;
+    
+    /* Ensures the input box is displayed nicely */
+    display: block; 
+}
+
+.custom-legend-toggle .big-ai-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+
+
 .menu-bar {
   font-family: var(--font-main);
   background: transparent;
@@ -218,6 +271,14 @@ h2 {
     transform: rotate(360deg);
   }
 }
+
+
+.ai-header-style {
+  font-style: italic; /* Makes the text italic */
+  margin-bottom: 20px; /* Adds a 20 pixel gap beneath the element */
+  /* You could also add font-size: 1.5rem; for the text-2xl effect */
+}
+
 
 /* * When the button is in the loading state, we apply this class 
  * to the button container to override text-shadow/padding if needed.

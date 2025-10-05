@@ -18,6 +18,8 @@ router.use("/users", userRoutes);
 router.use("/hero_ai_finds", hero_ai_findRoutes);
 router.use("/hero_ai_urls", hero_ai_urlRoutes);
 
+module.exports = router;
+
 
 // create a default route for /api
 // router.get("/api", (req, res) => {
@@ -30,5 +32,3 @@ router.use("/hero_ai_urls", hero_ai_urlRoutes);
 // router.use("/api/hero_ai_finds", hero_ai_findRoutes);  // ****** check this line
 // router.use("/api/hero_ai_urls", hero_ai_urlRoutes);
 
-
-module.exports = router;
