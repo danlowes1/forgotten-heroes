@@ -5,6 +5,24 @@ const app = require("express").Router();
 // import the models
 const { Hero } = require("../models/index");
 
+
+// Route to get a random hero name from stored procedure
+app.get("/random", async (req, res) => {
+  try {
+    const result = await callStoredProc("up_SEL_HeroRandomName");
+
+    console.log("Stored proc raw result:", result);
+
+    const randomHeroName = result.RandomHeroName;
+
+    res.json({ RandomHeroName: randomHeroName });
+  } catch (error) {
+    console.error("Error calling stored procedure:", error);
+    res.status(500).json({ error: "Failed to get random hero" });
+  }
+});
+
+
 // Route to add a new post
 app.post("/", async (req, res) => {
   try {
@@ -101,22 +119,6 @@ app.post("/find-or-create", async (req, res) => {
   }
 });
 
-// Route to get a random hero name from stored procedure
-app.get("/random", async (req, res) => {
-  try {
-    const result = await callStoredProc("up_SEL_HeroRandomName");
-
-    // Sequelize returns an array of rows, so grab the first one
-    const randomHeroName = result[0]?.RandomHeroName;
-
-    res.json({ RandomHeroName: randomHeroName });
-  } catch (error) {
-    console.error("Error calling stored procedure:", error);
-    res.status(500).json({ error: "Failed to get random hero" });
-  }
-});
-
-
 // Route to update a hero
 app.put("/:id", async (req, res) => {
   try {
@@ -142,20 +144,43 @@ app.delete("/:id", async (req, res) => {
   }
 });
 
-// Route to get a random hero name from stored procedure
-app.get("/random", async (req, res) => {
-  try {
-    const result = await callStoredProc("up_SEL_HeroRandomName");
 
-    // Sequelize returns an array of rows, so grab the first one
-    const randomHeroName = result[0]?.RandomHeroName;
+console.log("Setting up /random route");
 
-    res.json({ RandomHeroName: randomHeroName });
-  } catch (error) {
-    console.error("Error calling stored procedure:", error);
-    res.status(500).json({ error: "Failed to get random hero" });
-  }
-});
+// // Route to get a random hero name from stored procedure
+// app.get("/random", async (req, res) => {
+//   try {
+//     const result = await callStoredProc("up_SEL_HeroRandomName");
+
+//     // Sequelize returns an array of rows, so grab the first one
+//     const randomHeroName = result[0]?.RandomHeroName;
+    
+//     console.log("Stored proc raw result:", result);
+
+//     res.json({ RandomHeroName: randomHeroName });
+//   } catch (error) {
+//     console.error("Error calling stored procedure:", error);
+//     res.status(500).json({ error: "Failed to get random hero" });
+//   }
+// });
+
+
+// // Route to get a random hero name from stored procedure
+// app.get("/random", async (req, res) => {
+//   try {
+//     const result = await callStoredProc("up_SEL_HeroRandomName");
+
+//     // Sequelize returns an array of rows, so grab the first one
+//     const randomHeroName = result[0]?.RandomHeroName;
+
+//     res.json({ RandomHeroName: randomHeroName });
+//   } catch (error) {
+//     console.error("Error calling stored procedure:", error);
+//     res.status(500).json({ error: "Failed to get random hero" });
+//   }
+// });
+
+
 
 
 // export the router

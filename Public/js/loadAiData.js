@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fileName = fileNameWithExtension.split('.')[0].replace(/-/g, ' ');
   
-    const heroName = fileName.toLowerCase().replace(/\b\w/g, (char) => {
+    let heroName = fileName.toLowerCase().replace(/\b\w/g, (char) => {
         return char.toUpperCase();
     });
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const firstHeader = document.querySelector("h1")?.textContent.trim();
     const firstHeader =  elmHeader1?.textContent.trim();
     
-    console.log("First header:", firstHeader);
+    // console.log("First header:", firstHeader);
 
     // 2. Get all <p> contents as plain text
     const paragraphs = Array.from(document.querySelectorAll("p")).map(p => p.textContent.trim());
@@ -37,14 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("AI Button clicked fileName:", fileName);
         if (fileName === 'ai info') {
             // We are not on a hero page we are on the ai-info.html page
-            const res = await fetch("/api/heroes/random");
-
-            // const res = await fetch("http://127.0.0.1:3001/api/heroes/random");
+            //const res = await fetch("/api/heroes/random");   
+            const res = await fetch("http://localhost:3001/api/heroes/random"); // This works but we should be using fetch("/api/heroes/random")
 
             const data = await res.json();
             const randomHeroName = data.RandomHeroName;
             elmHeader1.textContent = randomHeroName;
-            console.log("Random hero name:", randomHeroName);   
+            // console.log("Random hero name:", randomHeroName); 
+            // console.log("Header1:", elmHeader1.textContent );  
+            heroName = randomHeroName;
         }
 
         contentContainer.innerHTML = '';

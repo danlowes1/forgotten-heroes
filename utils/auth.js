@@ -1,3 +1,4 @@
+// utils/auth.js
 const jwt = require('jsonwebtoken');
 
 const secret = 'mysecretssshhhhhhh';

@@ -89,21 +89,31 @@ app.get("/", (req, res) => {
 });
 
 // Add routes
-app.use(routes);
+// app.use(routes);
+app.use("/api", routes);
 
 
 
+// server.js (near the bottom, before app.listen)
+function listRoutes(app) {
+  console.log("Registered routes:");
+  app._router.stack.forEach((middleware) => {
+    if (middleware.route) {
+      // routes registered directly on the app
+      console.log(`${Object.keys(middleware.route.methods)} ${middleware.route.path}`);
+    } else if (middleware.name === "router") {
+      // router middleware
+      middleware.handle.stack.forEach((handler) => {
+        const route = handler.route;
+        if (route) {
+          console.log(`${Object.keys(route.methods)} ${route.path}`);
+        }
+      });
+    }
+  });
+}
 
-
-
-
-
-
-
-
-
-
-
+listRoutes(app);
 
 // Sync database
 sequelize.sync({ force: rebuild }).then(() => {
