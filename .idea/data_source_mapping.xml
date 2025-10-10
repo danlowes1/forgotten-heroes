@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="dbSrc:///6366ff9f/e025b9d7-8691-401f-bd1c-1a811dad9fb1/schema/forgottenheroes/routine/up_SEL_HeroRandomName@()P.sql" value="e025b9d7-8691-401f-bd1c-1a811dad9fb1" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/e025b9d7-8691-401f-bd1c-1a811dad9fb1/console.sql" value="e025b9d7-8691-401f-bd1c-1a811dad9fb1" />
+  </component>
+</project>

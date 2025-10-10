@@ -6,6 +6,7 @@ const heroRoutes = require("./hero");
 const userRoutes = require("./user");
 const hero_ai_findRoutes = require("./hero_ai_find");
 const hero_ai_urlRoutes = require("./hero_ai_url");
+const contactRoutes = require("./contact"); //
 
 // create a default route for /api
 router.get("/", (req, res) => {
@@ -17,6 +18,7 @@ router.use("/heroes", heroRoutes);
 router.use("/users", userRoutes);
 router.use("/hero_ai_finds", hero_ai_findRoutes);
 router.use("/hero_ai_urls", hero_ai_urlRoutes);
+router.use("/contact", contactRoutes);
 
 module.exports = router;
 

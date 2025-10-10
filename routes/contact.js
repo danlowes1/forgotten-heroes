@@ -4,7 +4,8 @@ const nodemailer = require("nodemailer");
 
 const router = express.Router();
 
-router.post("/contact", async (req, res) => {
+// just "/"
+router.post("/", async (req, res) => {
   const { name, email, comments } = req.body;
 
   if (!name || !email || !comments) {
@@ -12,19 +13,17 @@ router.post("/contact", async (req, res) => {
   }
 
   try {
-    // Configure your email transport
     const transporter = nodemailer.createTransport({
-      service: "gmail", // or "hotmail", "yahoo", etc.
+      service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER, // your email address
-        pass: process.env.EMAIL_PASS, // your app password (not account password!)
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    // Email details
     const mailOptions = {
       from: `"Forgotten Legends Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER, // where messages are sent
+      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
       subject: `New Contact Form Submission from ${name}`,
       text: `
         Name: ${name}
@@ -35,7 +34,6 @@ router.post("/contact", async (req, res) => {
       replyTo: email,
     };
 
-    // Send email
     await transporter.sendMail(mailOptions);
 
     res.json({ message: "Message sent successfully!" });

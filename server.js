@@ -20,6 +20,13 @@ app.use("/api", contactRoute);
 const cors = require("cors");
 app.use(cors());
 
+app.use(cors({
+  origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+  methods: ["GET", "POST"],
+}));
+
+
+
 const API_KEY = process.env.GEMINI_API_KEY;
 
 const { GoogleGenAI } = require("@google/genai"); // Import correctly
@@ -37,7 +44,7 @@ app.get("/generate-ai-content", async (req, res) => {
     const prompt = `
         Give me up to 5 interesting facts about ${heroName}.
         Each fact should be 2-3 sentences long.
-        They only shoud be facts that are not commonly known. They can be things like where are they now, what are they doing, what is something interesting about their life that most people don't know.
+        They only should be facts that are not commonly known. They can be things like where are they now, what are they doing, what is something interesting about their life that most people don't know.
         If you can't come up with 5, just give me what you can.
     `;
 
@@ -121,3 +128,57 @@ sequelize.sync({ force: rebuild }).then(() => {
 //gemini-1.5-pro
 //gemini-2.5-flash
 //gemini-2.0-flash-lite
+
+// app.get("/generate-ai-content", async (req, res) => {
+//     const heroName = req.query.heroName;
+
+//     if (!heroName) {
+//         return res.status(400).json({ error: "Missing 'heroName' query parameter." });
+//     }
+
+//     // You can now make the main prompt simpler since the System Instruction handles the persona.
+//     const prompt = `
+//         Provide up to 5 interesting facts about ${heroName}, following all constraints in the System Instruction.
+//     `;
+
+//     // The FactsArraySchema remains exactly the same as it correctly defines your desired output.
+//     const FactsArraySchema = {
+//         type: "array",
+//         items: {
+//             type: "object",
+//             properties: {
+//                 fact: { type: "string", description: "A single interesting fact, 2-3 sentences long." }
+//             }
+//         }
+//     };
+
+//     // Define the System Instruction
+//     const systemInstruction = `
+//         You are an expert digital historian for a legends archive. Your sole purpose is to
+//         uncover and provide obscure, little-known, and interesting facts about the given subject.
+//         Each fact must be 2-3 sentences long and focus on non-mainstream details like current
+//         activities, hidden biographical facts, or little-known history.
+//         The output MUST strictly adhere to the provided JSON schema.
+//     `;
+
+//     try {
+//         const response = await ai.models.generateContent({
+//             model: "gemini-2.5-flash",
+//             // The prompt is the 'contents'
+//             contents: prompt,
+//             config: {
+//                 // *** NEW: Add the systemInstruction here ***
+//                 systemInstruction: systemInstruction, 
+                
+//                 // Existing structured output parameters
+//                 responseMimeType: "application/json",
+//                 responseSchema: FactsArraySchema,
+//             },
+//         });
+        
+//         // ... (rest of your response handling code)
+
+//     } catch (error) {
+//         // ... (error handling)
+//     }
+// });

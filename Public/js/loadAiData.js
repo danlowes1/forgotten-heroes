@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const paragraphs = Array.from(document.querySelectorAll("p")).map(p => p.textContent.trim());
     // console.log("Paragraphs:", paragraphs);
 
-    // const apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-name/${encodeURIComponent(heroName)}`;
-
     let geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
 
     aiButton.addEventListener('click', async function(event) {
