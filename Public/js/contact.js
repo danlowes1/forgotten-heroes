@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
         //   body: JSON.stringify(formData),
         // });
 
-        const response = await fetch("http://localhost:3001/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
+          const response = await fetch("http://localhost:3001/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
 
 
         if (response.ok) {

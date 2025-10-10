@@ -1,20 +1,20 @@
-// Example fruit list (you'd normally fetch this from your backend API)
+<html><head></head><body><main class="page-content">// Example fruit list (you'd normally fetch this from your backend API)
 const fruits = ["🍒", "🍋", "🍇", "🍉", "🍊", "🍓"];
 
-document.getElementById("spinBtn").addEventListener("click", () => {
+document.getElementById("spinBtn").addEventListener("click", () =&gt; {
   spinReel("reel1");
   spinReel("reel2");
   spinReel("reel3");
 
   // Fetch random result from your database (needs backend route)
   fetch("/random-fruit")
-    .then(res => res.json())
-    .then(data => {
+    .then(res =&gt; res.json())
+    .then(data =&gt; {
       console.log("Database result:", data);
       // You could replace one of the reels with database result:
       document.getElementById("reel1").textContent = data.symbol;
     })
-    .catch(err => console.error(err));
+    .catch(err =&gt; console.error(err));
 });
 
 function spinReel(id) {
@@ -23,10 +23,13 @@ function spinReel(id) {
   // temporary spin animation
   reel.style.transform = "rotate(720deg)";
 
-  setTimeout(() => {
+  setTimeout(() =&gt; {
     // Pick a random fruit locally
     const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
     reel.textContent = randomFruit;
     reel.style.transform = "rotate(0deg)";
   }, 1000); // match transition duration
 }
+</main>
+  <script src="js/navbarBurger.js"></script>
+</body></html>
