@@ -4,8 +4,8 @@ const glob = require('glob');
 const cheerio = require('cheerio');
 
 const workspaceRoot = path.join(__dirname, '..');
-const pattern = path.join(workspaceRoot, '**', '*.html');
-
+// const pattern = path.join(workspaceRoot, '**', '*.html');
+const pattern = path.resolve(__dirname, '../Public/*.html').replace(/\\/g, '/');// adjust if needed
 const ignore = [
   path.join(workspaceRoot, 'node_modules', '**'),
   path.join(workspaceRoot, '.git', '**'),

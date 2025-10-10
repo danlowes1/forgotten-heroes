@@ -23,35 +23,56 @@ app.use(cors({
 const API_KEY = process.env.GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-// --- Gemini AI endpoint ---
+
+
+// Gemini ai content generation 
+// / --- Gemini AI endpoint ---
 app.get("/generate-ai-content", async (req, res) => {
-  const heroName = req.query.heroName;
+    const heroName = req.query.heroName;
 
-  if (!heroName) return res.status(400).json({ error: "Missing 'heroName' query parameter." });
-
-  const prompt = `
-    Give me up to 5 interesting facts about ${heroName}.
-    Each fact should be 2-3 sentences long.
-  `;
-
-  const FactsArraySchema = {
-    type: "array",
-    items: {
-      type: "object",
-      properties: { fact: { type: "string" } }
+    if (!heroName) {
+        return res.status(400).json({ error: "Missing 'heroName' query parameter." });
     }
-  };
 
-  try {
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: FactsArraySchema,
-      },
-    });
+    // You can now make the main prompt simpler since the System Instruction handles the persona.
+    const prompt = `
+        Provide up to 5 interesting facts about ${heroName}, following all constraints in the System Instruction.
+    `;
 
+    // The FactsArraySchema remains exactly the same as it correctly defines your desired output.
+    const FactsArraySchema = {
+        type: "array",
+        items: {
+            type: "object",
+            properties: {
+                fact: { type: "string", description: "A single interesting fact, 2-3 sentences long." }
+            }
+        }
+    };
+
+    // Define the System Instruction
+    const systemInstruction = `
+        You are an expert digital historian for a legends archive. Your sole purpose is to
+        uncover and provide obscure, little-known, and interesting facts about the given subject.
+        Each fact must be 2-3 sentences long and focus on non-mainstream details like current
+        activities, hidden biographical facts, or little-known history.
+        The output MUST strictly adhere to the provided JSON schema.
+    `;
+
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            // The prompt is the 'contents'
+            contents: prompt,
+            config: {
+                // *** NEW: Add the systemInstruction here ***
+                systemInstruction: systemInstruction, 
+                
+                // Existing structured output parameters
+                responseMimeType: "application/json",
+                responseSchema: FactsArraySchema,
+            },
+        });
     const factsArray = JSON.parse(response.text).map(item => item.fact);
     res.json(factsArray);
   } catch (error) {
@@ -59,6 +80,7 @@ app.get("/generate-ai-content", async (req, res) => {
     res.status(500).json({ error: "Failed to generate AI content" });
   }
 });
+
 
 // --- Static files ---
 app.use(express.static(path.join(__dirname, "public")));
