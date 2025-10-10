@@ -1,4 +1,4 @@
-/// components.js
+/// js/components.js
 
 class NavBar extends HTMLElement {
   connectedCallback() {
@@ -12,8 +12,6 @@ class NavBar extends HTMLElement {
           menu.classList.toggle("active");
         });
       </script>
-
-          
       <header class="site-header">
         <div class="header-left">
           <div class="site-title">

@@ -1,10 +1,8 @@
 // routes/contact.js
 const express = require("express");
 const nodemailer = require("nodemailer");
-
 const router = express.Router();
 
-// just "/"
 router.post("/", async (req, res) => {
   const { name, email, comments } = req.body;
 
@@ -25,12 +23,7 @@ router.post("/", async (req, res) => {
       from: `"Forgotten Legends Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO || process.env.EMAIL_USER,
       subject: `New Contact Form Submission from ${name}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Message:
-        ${comments}
-      `,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${comments}`,
       replyTo: email,
     };
 

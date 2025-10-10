@@ -1,4 +1,4 @@
-// public/contact.js
+// Contact form handling
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("footer form");
 console.log("Contact form script loaded.");
@@ -32,6 +32,29 @@ console.log("Contact form script loaded.");
         console.error("Form submission failed:", err);
         alert("Unable to send your message. Please try again later.");
       }
+    });
+  }
+});
+
+// Custom Elements for Navbar
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.querySelector(".burger");
+  const menu = document.querySelector(".menu-bar");
+  const links = document.querySelectorAll(".menu-bar a");
+
+  if (burger && menu) {
+    // Toggle menu when clicking burger
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      menu.classList.toggle("active");
+    });
+
+    // Close menu when clicking a link
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        burger.classList.remove("active");
+        menu.classList.remove("active");
+      });
     });
   }
 });
