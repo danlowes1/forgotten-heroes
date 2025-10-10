@@ -80,7 +80,7 @@ app.get("/name/:hero_name", async (req, res) => {
 // Example: POST route to find or create a Hero
 // This uses req.body for cleaner data handling for creation
 app.post("/find-or-create", async (req, res) => {
-  const { hero_name } = req.body; 
+  const { hero_name, user_entered } = req.body; 
 
   try {
     // 1. Define the criteria for finding the record
@@ -91,6 +91,7 @@ app.post("/find-or-create", async (req, res) => {
       // 2. Define the values for the new record (if it's not found)
       defaults: {
         hero_name: hero_name,
+        user_entered: user_entered
       }
     });
 

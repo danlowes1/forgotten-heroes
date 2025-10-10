@@ -11,6 +11,11 @@ Hero.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    user_entered: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }
   },
   {
     sequelize,

@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const elmHeader1 = document.querySelector("h1");
 
     const fileName = fileNameWithExtension.split('.')[0].replace(/-/g, ' ');
+    let userEntered = false;
+
     let aiResultsHeader = '';
 
     let heroName = fileName.toLowerCase().replace(/\b\w/g, (char) => {
@@ -37,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const customInputArea = document.getElementById('customInputArea');
             const legendNameInput = document.getElementById('legendNameInput');
             const customLegendName = legendNameInput.value.trim();
+
+            userEntered = true;
 
             if (customInputArea.style.display === 'block' && (customLegendName.length > 0)) {
                 heroName = customLegendName;
@@ -74,8 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             messageContainer.innerHTML = '<p class="text-gray-500">AI searching for updates...</p>';
         }, 500);
+        console.log("user_entered:", userEntered);
 
-        const dataHero = { hero_name: heroName };
+        const dataHero = { hero_name: heroName, user_entered: userEntered}; // (fileName === 'ai info' && customInputArea.style.display === 'block' && (customLegendName.length > 0)) ? true : false };
         try {
             // 2. Call the POST endpoint
             const response = await fetch("http://localhost:3001/api/heroes/find-or-create", {
