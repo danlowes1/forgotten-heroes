@@ -1,5 +1,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Universal box sizing and no horizontal overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
 
 :root {
   --background-color: #0C1B36; /* deep navy, steam-era vibe */
@@ -11,6 +24,9 @@
   --font-main: 'Lato', sans-serif;
   --font-heading: 'Lato', sans-serif;
 }
+
+
+
 
 /* Global */
 body {
@@ -72,7 +88,7 @@ h2 {
 .site-logo {
   max-height: 80px;
   height: auto;
-  max-width: 200px;
+  max-width: 280px;
   width: auto;
   border-radius: 8px;
   object-fit: contain;
@@ -380,7 +396,7 @@ h2 {
     color: var(--nav-color) !important;
   }
   .ai-button::after {
-    content: "AI";
+    content: "AI Powered";
   }
   .ai-button {
     visibility: hidden;
@@ -654,3 +670,38 @@ ai-bar {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+
+/* --- Responsive Fixes --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+nav-bar, site-footer {
+  display: block;
+  width: 100%;
+}
+
+.hero-box {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .hero-box {
+    flex: 1 1 45%;
+  }
+}
+
