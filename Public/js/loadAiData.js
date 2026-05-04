@@ -20,11 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const firstHeader =  elmHeader1?.textContent.trim();
     
     const paragraphs = Array.from(document.querySelectorAll("p")).map(p => p.textContent.trim());
-    // console.log("Paragraphs:", paragraphs);
+    console.log("Paragraphs:", paragraphs);
 
-    let geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
+    let geminiApiUrl = `/generate-ai-content?heroName=${encodeURIComponent(firstHeader)}`;
 
+           
+
+    // aiButton.addEventListener('click', async (event) => { ... });  
     aiButton.addEventListener('click', async function(event) {
+       console.log('geminiApiUrl:', geminiApiUrl);
         let heroId , heroRecord, apiUrl;
         const originalText = aiButton.textContent;
 
@@ -49,14 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
                                 return char.toUpperCase();
                             });
                 console.log(`Firing Gemini API for custom legend: ${heroName}`);
-                geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
+                // geminiApiUrl = `http://localhost:3001/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
+                geminiApiUrl = `/generate-ai-content?heroName=${encodeURIComponent(heroName)}`;
                 aiResultsHeader =
                     `<div class="ai-header-style">These are the AI results for the legend by the name of ${heroName}...</div>`;
 
             } else {
                 console.log("Firing default API for random hero.");
                 // Call stored proc to get a random hero name  
-                const res = await fetch("http://localhost:3001/api/heroes/random"); // This works but we should be using fetch("/api/heroes/random")
+                // const res = await fetch("http://localhost:3001/api/heroes/random"); // This works but we should be using fetch("/api/heroes/random")
+                const res = await fetch("/api/heroes/random"); 
                 const data = await res.json();
                 const randomHeroName = data.RandomHeroName;
                 elmHeader1.textContent = randomHeroName;
@@ -83,7 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const dataHero = { hero_name: heroName, user_entered: userEntered}; // (fileName === 'ai info' && customInputArea.style.display === 'block' && (customLegendName.length > 0)) ? true : false };
         try {
             // 2. Call the POST endpoint
-            const response = await fetch("http://localhost:3001/api/heroes/find-or-create", {
+            // const response = await fetch("http://localhost:3001/api/heroes/find-or-create", {
+            const response = await fetch("/api/heroes/find-or-create", {
+                method: "POST", 
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json", // Important: Tells the server to expect JSON
@@ -116,24 +124,30 @@ document.addEventListener('DOMContentLoaded', () => {
         // Wait 3 seconds total before fetching data
         setTimeout(async () => {
             try {
-                apiUrl = `http://localhost:3001/api/hero_ai_finds/by-hero-id/${heroId}`;
+                apiUrl = `/api/hero_ai_finds/by-hero-id/${heroId}`;
                 let response = await fetch(apiUrl);
                 if (!response.ok) throw new Error(`Server failed to process request. Status: ${response.status}`);
                 let data = await response.json();
 
                 // If no data found, ask Gemini to generate
+                // If no data found in MySQL, ask Gemini to generate
                 if (data.length === 0) {
-                    const responseAi = await fetch(geminiApiUrl);
-                    if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
-                    const dataAi = await responseAi.json();
+                    try {
+                        const responseAi = await fetch(geminiApiUrl);
+                        
+                        // This traps the 403 (Suspended) or 429 (Quota Exceeded) errors
+                        if (!responseAi.ok) {
+                            const errorBody = await responseAi.json().catch(() => ({}));
+                            throw new Error(`AI_SERVICE_ISSUE: ${responseAi.status} - ${errorBody.error || 'Check billing/API key status'}`);
+                        }
 
-                    if (dataAi && dataAi.length > 0) {
-                        try {
+                        const dataAi = await responseAi.json();
+
+                        if (dataAi && dataAi.length > 0) {
                             // Save all AI facts in parallel
                             await Promise.all(
                                 dataAi.map(async (item, index) => {
-                                    console.log(`Fact #${index + 1}: ${item}`);
-                                    const saveUrl = 'http://localhost:3001/api/hero_ai_finds';
+                                    const saveUrl = '/api/hero_ai_finds';
                                     const payload = { content: item, hero_id: heroId };
 
                                     const saveResponse = await fetch(saveUrl, {
@@ -142,38 +156,83 @@ document.addEventListener('DOMContentLoaded', () => {
                                         body: JSON.stringify(payload)
                                     });
 
-                                    if (!saveResponse.ok) {
-                                        const errorDetails = await saveResponse.json();
-                                        throw new Error(
-                                            `Failed to save fact. Status: ${saveResponse.status}. Message: ${errorDetails.message || 'Unknown server error'}`
-                                        );
-                                    }
-
-                                    const savedRecord = await saveResponse.json();
-                                    console.log("Fact saved successfully. Record ID:", savedRecord.id);
+                                    if (!saveResponse.ok) throw new Error("Failed to save fact to database.");
                                 })
                             );
 
-                            // Only runs once ALL saves are complete (becuase of await Promise.all)
-                            console.log("Re-fetching data after AI generation...");
+                            // Re-fetch from DB now that facts are saved
                             response = await fetch(apiUrl);
-                            if (!response.ok) throw new Error(`Server failed to process request. Status: ${response.status}`);
                             data = await response.json();
-                            console.log("Data after AI generation length:", data.length);
-
-                        } catch (error) {
-                            console.error("Error while saving AI facts:", error.message);
+                        } else {
+                            console.log("AI query was successful, but no facts were returned.");
                         }
-                    } else {
-                        console.log("AI query was successful, but no facts were returned.");
+
+                    } catch (aiErr) {
+                        console.error("Gemini Specific Error:", aiErr.message);
+                        
+                        // Provide visual feedback for the specific error
+                        messageContainer.innerHTML = `
+                            <div style="color: #dc3545; padding: 10px; border: 1px solid #dc3545; border-radius: 4px;">
+                                <strong>AI Service Unavailable:</strong><br>
+                                ${aiErr.message.includes('403') ? 'Your API key is suspended or lacks permissions.' : 'Unable to fetch new facts right now.'}
+                            </div>`;
+                        
+                        // We 'return' so the code doesn't try to render 'data' which is still empty
+                        return; 
                     }
-                }
+                }                
+                // if (data.length === 0) {
+                //     const responseAi = await fetch(geminiApiUrl);
+                //     if (!responseAi.ok) throw new Error(`HTTP error! status: ${responseAi.status}`);
+                //     const dataAi = await responseAi.json();
+
+                //     if (dataAi && dataAi.length > 0) {
+                //         try {
+                //             // Save all AI facts in parallel
+                //             await Promise.all(
+                //                 dataAi.map(async (item, index) => {
+                //                     console.log(`Fact #${index + 1}: ${item}`);
+                //                     const saveUrl = '/api/hero_ai_finds';
+                //                     const payload = { content: item, hero_id: heroId };
+
+                //                     const saveResponse = await fetch(saveUrl, {
+                //                         method: 'POST',
+                //                         headers: { 'Content-Type': 'application/json' },
+                //                         body: JSON.stringify(payload)
+                //                     });
+
+                //                     if (!saveResponse.ok) {
+                //                         const errorDetails = await saveResponse.json();
+                //                         throw new Error(
+                //                             `Failed to save fact. Status: ${saveResponse.status}. Message: ${errorDetails.message || 'Unknown server error'}`
+                //                         );
+                //                     }
+
+                //                     const savedRecord = await saveResponse.json();
+                //                     console.log("Fact saved successfully. Record ID:", savedRecord.id);
+                //                 })
+                //             );
+
+                //             // Only runs once ALL saves are complete (becuase of await Promise.all)
+                //             console.log("Re-fetching data after AI generation...");
+                //             response = await fetch(apiUrl);
+                //             if (!response.ok) throw new Error(`Server failed to process request. Status: ${response.status}`);
+                //             data = await response.json();
+                //             console.log("Data after AI generation length:", data.length);
+
+                //         } catch (error) {
+                //             console.error("Error while saving AI facts:", error.message);
+                //         }
+                //     } else {
+                //         console.log("AI query was successful, but no facts were returned.");
+                //     }
+                // }
 
                 // Render results
                 if (Array.isArray(data) && data.length > 0) {
                     messageContainer.innerHTML = '';
                     contentContainer.innerHTML = aiResultsHeader; // Add header if we are coming from ai-info.html page
-                    data.slice(0, 10).forEach(item => {
+                    data.slice(0, 99).forEach(item => {
                         const contentCard = document.createElement('div');
                         contentCard.className = 'content-card';
                         contentCard.textContent = item.content;
@@ -195,46 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const toggleButton = document.getElementById('toggleInputButton');
-//     const inputArea = document.getElementById('customInputArea');
-
-//     toggleButton.addEventListener('click', function() {
-//         // Toggle the display style between 'none' (hidden) and 'block' (visible)
-//         if (inputArea.style.display === 'none') {
-//             inputArea.style.display = 'block';
-//             toggleButton.textContent = 'Hide Input Field'; // Change button text when visible
-//         } else {
-//             inputArea.style.display = 'none';
-//             toggleButton.textContent = 'Challenge the System!'; // Change button text when hidden
-//         }
-//     });
-// });
-
-
-
-
-// document.getElementById('findOutMoreBtn').addEventListener('click', function() {
-//   const explanation = document.getElementById('aiExplanation');
-//   const btn = this;
-//   const icon = btn.querySelector('.btn-icon');
-//   const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-  
-//   console.log("Button clicked. Current expanded state:");
-
-//   if (isExpanded) {
-//     explanation.hidden = true;
-//     btn.setAttribute('aria-expanded', 'false');
-//     icon.textContent = '▼';
-//     btn.querySelector('.btn-text').textContent = 'Find out more';
-//   } else {
-//     explanation.hidden = false;
-//     btn.setAttribute('aria-expanded', 'true');
-//     icon.textContent = '▲';
-//     btn.querySelector('.btn-text').textContent = 'Show less';
-//   }
-// });
 
 
 function aiResultsHeader () {

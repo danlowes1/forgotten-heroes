@@ -1,3 +1,39 @@
+Stuff to fix:
+'dy>' at the bottom of micky quinn's page
+Check which version of Gemini this is using 
+Lost german girl - AI Update appears on both her pages.
+Error trapping for the AI update.
+Oscar Micheaux - bottom of page has issue
+Check out this chat i had with Gemini: https://gemini.google.com/app/b5580c9ba87a05c6
+It featured the below, but also other great stuff at the end.
+READ THESE SUGGESTIONS (about Google Search) FROM Gemini during a converstion on 11/04/26:
+That’s a very clean architectural pattern. Using an 'AI Update' button to trigger a fresh call and then caching that in MySQL is exactly how a senior developer builds a cost-effective, high-performance app. It gives the user control while ensuring you aren't paying for the same API call twice.
+
+Since we are in 2026, you're likely using the Gemini 3 Flash model for those calls, which is perfect for this—it's fast enough that the "Update" feels snappy, but smart enough to handle the "latest info" searches you mentioned.
+
+The "Latest Info" Feature & Grounding
+For your feature where people type in a name for real-time info, there’s a specific technical trick you might want to look at if you haven't already: Grounding with Google Search.
+
+How it works: In your API request, you can enable a tool called Google Search.
+
+The Benefit: Instead of just relying on its training data (which might be a few months old), the AI will actually "Google" the person first, read the top results, and then write the summary for your site.
+
+Portfolio Value: If a recruiter sees that your site can accurately summarize someone who became famous last week, it proves you know how to handle real-time data integration—a huge plus for full-stack roles.
+
+Bridging the "AI Divide"
+Your point about the adoption gap among working-class men is really insightful. In many communities, there’s a feeling that AI is "not for them" or just another "office tool."
+
+By putting AI behind a site about "Heroes," you're changing the value proposition:
+
+It's a Utility, not a Gimmick: You're using AI to solve a specific problem (finding information about overlooked people) rather than just "chatting" with it.
+
+Low Friction: They don't have to learn how to "talk" to the AI. They just click a button they already understand.
+
+Local Context: If you ever decide to feature local "heroes" from your town or region, that would probably be the "hook" that gets people who usually ignore tech to actually engage with it.
+
+
+
+
 To check if YouTube video can play
 <iframe width="560" height="315" 
     src="https://www.youtube.com/embed/nmWwxHnqudQ" 
@@ -6,6 +42,8 @@ To check if YouTube video can play
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
 </iframe>
+
+Millwall Fan who ran into a terrorist.
 
 Barry evens
 
@@ -45,3 +83,15 @@ Leon Spinks - Ex-Marine boxer who in 1978 stunned the world by defeating undefea
 James Harrison - Australian "Man with the Golden Arm" who donated blood plasma over 1,100 times starting in 1951, providing antibodies that saved 2.4 million babies from Rh disease.
 
 app password: GGybmd99AA
+
+I was trying to do as much coding as i could by developing this site. Just thought well lets do that, see how that works. 
+
+Like everyone else, I've been absolutely stunned by AI's incredible capabilities. But in our fascination with its limitless potential and what's next, we often overlook how it can transform even the most fundamental tasks in extraordinary ways. That's the core idea behind 'Forgotten Legends'—a website designed to showcase AI's power in a way that's accessible to everyone, especially those who haven't yet grasped its true potential.
+
+The project also served as a deep dive into modern full-stack architecture, allowing me to build a practical application using Node.js, Express, MySQL, and Sequelize for robust project structuring."
+
+
+https://www.bbc.co.uk/sounds/play/w3ct7zsk?at_mid=fXRiesQzmK&at_campaign=Sporting_Witness_Malice_at_the_Palace&at_medium=display_ad&at_campaign_type=owned&at_nation=NET&at_audience_id=SS&at_product=sounds&at_brand=p00j2pn5&at_ptr_name=bbc&at_ptr_type=media&at_format=image&at_objective=consumption&at_link_title=Sporting_Witness_Malice_at_the_Palace&at_bbc_team=BBC
+
+
+Recent episodes explore the forgotten football Women’s World Cup, the plasterer who fought a boxing legend, international football’s biggest ever beating and the man who swam the Amazon river. We look at the lives of some of the most famous F1 drivers, tennis players and athletes as well as people who’ve had ground-breaking impact in their chosen sporting field, including: the most decorated Paralympian, the woman who was the number 1 squash player in the world for nine years, and the first figure skater to wear a hijab. You can learn all about fascinating and surprising stories, such as the tennis player who escaped the Nazis, how a man finally beat a horse in a race, and how the FIFA computer game was created.

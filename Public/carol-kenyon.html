@@ -324,9 +324,10 @@
             <div class="ai-section">
                 <h2>Discover More About Carol Kenyon</h2>
                 <p>Our AI technology can find the latest information, rare recordings, and current projects</p>
-                <button class="ai-button" onclick="revealAIInfo()">Let AI find out the latest updates</button>
-                
-                <div id="aiResult" class="ai-result">
+                <!-- <button class="ai-button" onclick="revealAIInfo()">Let AI find out the latest updates</button> -->
+                <button class="ai-button" class="ai-button-fetch">Let AI find out the latest updates</button>
+                 <a href="#" id="aiButton" class="ai-button-fetch">AI Update</a>
+                <!-- <div id="aiResult" class="ai-result">
                     <h3>Latest Updates on Carol Kenyon</h3>
                     <p>✅ <strong>2023 Appearance:</strong> Performed with Heaven 17 at the Rewind Festival in Henley-on-Thames</p>
                     <p>✅ <strong>Recent Interview:</strong> Featured on the "80s Excess" podcast discussing her career (March 2023)</p>
@@ -334,7 +335,7 @@
                     <p>✅ <strong>Rare Recording:</strong> Recently discovered demo from 1984 with Trevor Horn to be released on a compilation album</p>
                     <p>✅ <strong>Documentary:</strong> Participating in a new documentary about session singers of the 1980s</p>
                 </div>
-            </div>
+            </div> -->
         </div>
         
         <footer>
@@ -342,24 +343,18 @@
         </footer>
     </div>
 
-    <script>
-        function revealAIInfo() {
-            const aiResult = document.getElementById('aiResult');
-            const button = document.querySelector('.ai-button');
-            
-            // Show AI result
-            aiResult.style.display = 'block';
-            
-            // Change button text
-            button.textContent = "Latest Updates Found!";
-            
-            // Scroll to results
-            aiResult.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+  <div class="main-container">
+    <div class="header-ai-bar">
+        <a href="#" id="aiButton" class="ai-button-fetch">AI Update</a>
+    </div>
+    <div id="messageContainer" class="message-container">
+    </div>
+    <div id="contentContainer" class="content-wrapper">
+    </div>
+  </div>
 
 
-        <ai-bar></ai-bar>
+        <!-- <ai-bar></ai-bar> -->
 
       
 

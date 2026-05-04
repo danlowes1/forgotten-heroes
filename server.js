@@ -29,14 +29,13 @@ const ai = new GoogleGenAI({ apiKey: API_KEY });
 // / --- Gemini AI endpoint ---
 app.get("/generate-ai-content", async (req, res) => {
     const heroName = req.query.heroName;
-
+    const model = req.query.model || "gemini-2.5-flash";
     if (!heroName) {
         return res.status(400).json({ error: "Missing 'heroName' query parameter." });
     }
 
-    // You can now make the main prompt simpler since the System Instruction handles the persona.
     const prompt = `
-        Provide up to 5 interesting facts about ${heroName}, following all constraints in the System Instruction.
+        Provide between 5 and 12 interesting facts about ${heroName}. Please aim for 10 or more facts if possible, especially if you can find obscure details that would be missed in a short article, following all constraints in the System Instruction.
     `;
 
     // The FactsArraySchema remains exactly the same as it correctly defines your desired output.

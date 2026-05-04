@@ -3,19 +3,10 @@
 class NavBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <script>
-        const burger = document.querySelector(".burger");
-        const menu = document.querySelector(".menu-bar");
-
-        burger.addEventListener("click", () => {
-          burger.classList.toggle("active");
-          menu.classList.toggle("active");
-        });
-      </script>
       <header class="site-header">
         <div class="header-left">
           <div class="site-title">
-            <img src="images/Forgotten-heroes_ Honouring the Unsung.png" alt="Forgotten Heroes" class="site-logo">
+            <img src="images/forgotten-legends-logo2.png" alt="Forgotten Heroes" class="site-logo">
           </div>
           <a href="ai-info.html" class="ai-button">AI Powered</a>
         </div>
@@ -32,10 +23,10 @@ class NavBar extends HTMLElement {
             <li><a href="index.html">Home</a></li>
             <li><a href="sport.html">Sport</a></li>
             <li><a href="music.html">Music</a></li>
-            <li><a href="film.html">Film</a></li>
-            <li><a href="popculture.html">Popular Culture</a></li>
             <li><a href="conflict.html">Conflict</a></li>
             <li><a href="robots.html">Bots</a></li>
+            <li><a href="film.html">Film</a></li>            
+            <li><a href="popculture.html">Pop Culture</a></li>
             <li><a href="about.html">About</a></li>
           </ul>
         </nav>
@@ -106,3 +97,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+      // <script>
+      //   const burger = document.querySelector(".burger");
+      //   const menu = document.querySelector(".menu-bar");
+
+      //   burger.addEventListener("click", () => {
+      //     burger.classList.toggle("active");
+      //     menu.classList.toggle("active");
+      //   });
+      // </script>

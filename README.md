@@ -27,3 +27,9 @@ The final bar scene, in which Sir John Mills' character finally gets his glass o
 https://www.youtube.com/watch?v=ouYKeeTz7Yw
 
 AIzaSyDqQwicbZhHmyBtbMAgRZp3b6qDN5hwvzw
+
+The russian robot:
+Not a legend or fogotten as of 2025 however it's pretty dam funny.
+Have the Japanese/Korean?? robot next to it: Maybe not forgotten in Japan but.... make it sound like anti-russian propaganda.
+
+Forgotten guitarists from famous solo artists (e.g. Elvis - mention keef richards is a fan)

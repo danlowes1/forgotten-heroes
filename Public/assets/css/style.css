@@ -69,6 +69,11 @@ h2 {
   letter-spacing: 1px;
 }
 
+.bold-quote {
+  font-weight: bold;
+  font-style: normal;
+} 
+
 /* Navbar */
 .site-header {
   font-family: var(--font-main);
@@ -88,7 +93,7 @@ h2 {
 .site-logo {
   max-height: 80px;
   height: auto;
-  max-width: 280px;
+  max-width: 400px;
   width: auto;
   border-radius: 8px;
   object-fit: contain;
